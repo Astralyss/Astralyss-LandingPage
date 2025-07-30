@@ -55,7 +55,7 @@ export default function Navbar() {
               height={40}
               className="w-8 h-8 lg:w-10 lg:h-10 transition-all duration-300"
             />
-            <span className="text-lg lg:text-xl xl:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="text-base lg:text-lg xl:text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-display">
               Astralyss
             </span>
           </Link>
@@ -71,7 +71,7 @@ export default function Navbar() {
                   className="flex items-center space-x-2 text-gray-300 hover:text-white transition-all duration-300 font-medium relative group"
                 >
                   <IconComponent className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
-                  <span>{item.name}</span>
+                  <span className="text-sm">{item.name}</span>
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               );
@@ -81,7 +81,7 @@ export default function Navbar() {
               className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>Contáctanos</span>
+              <span className="text-sm">Contáctanos</span>
             </Link>
           </div>
 
@@ -135,7 +135,7 @@ export default function Navbar() {
                     className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 font-medium py-3 px-4 rounded-lg hover:bg-slate-800/50"
                   >
                     <IconComponent className="w-5 h-5" />
-                    <span>{item.name}</span>
+                    <span className="text-sm">{item.name}</span>
                   </Link>
                 );
               })}
@@ -146,7 +146,7 @@ export default function Navbar() {
                   className="flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Contáctanos</span>
+                  <span className="text-sm">Contáctanos</span>
                 </Link>
               </div>
             </div>

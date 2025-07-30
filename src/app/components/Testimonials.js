@@ -49,12 +49,12 @@ export default function Testimonials() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 font-display">
             <span className="text-white">Lo que dicen </span>
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">nuestros clientes</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+          <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto px-4">
             Descubre por qué nuestros clientes confían en nosotros para transformar su presencia digital
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function Testimonials() {
               
               {/* Testimonial Content */}
               <div className="mb-6 sm:mb-8">
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 leading-relaxed italic text-center">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed italic text-center">
                   {testimonials[currentTestimonial].content}
                 </p>
               </div>
@@ -85,10 +85,10 @@ export default function Testimonials() {
                     </span>
                   </div>
                   <div>
-                    <h4 className="text-base sm:text-lg font-semibold text-white">
+                    <h4 className="text-sm sm:text-base font-semibold text-white">
                       {testimonials[currentTestimonial].name}
                     </h4>
-                    <p className="text-gray-400 text-sm sm:text-base">
+                    <p className="text-gray-400 text-xs sm:text-sm">
                       {testimonials[currentTestimonial].role}
                     </p>
                   </div>
@@ -124,33 +124,33 @@ export default function Testimonials() {
             <div className="flex justify-center mb-2">
               <Users className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
             </div>
-            <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 sm:mb-2">100%</div>
-            <div className="text-gray-300 text-sm sm:text-base">Clientes Satisfechos</div>
+            <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 sm:mb-2">100%</div>
+            <div className="text-gray-300 text-xs sm:text-sm">Clientes Satisfechos</div>
           </div>
           <div className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300">
             <div className="flex justify-center mb-2">
               <Award className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
             </div>
-            <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 sm:mb-2">5.0</div>
-            <div className="text-gray-300 text-sm sm:text-base">Calificación Promedio</div>
+            <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 sm:mb-2">5.0</div>
+            <div className="text-gray-300 text-xs sm:text-sm">Calificación Promedio</div>
           </div>
           <div className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300">
             <div className="flex justify-center mb-2">
               <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
             </div>
-            <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 sm:mb-2">50+</div>
-            <div className="text-gray-300 text-sm sm:text-base">Proyectos Exitosos</div>
+            <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 sm:mb-2">50+</div>
+            <div className="text-gray-300 text-xs sm:text-sm">Proyectos Exitosos</div>
           </div>
         </div>
 
         {/* CTA */}
         <div className="text-center mt-8 sm:mt-12">
-          <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
+          <p className="text-gray-300 mb-3 sm:mb-4 text-xs sm:text-sm">
             ¿Listo para transformar tu presencia digital?
           </p>
-          <button className="flex items-center justify-center space-x-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-base sm:text-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
+          <button className="flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
             <span>Comienza tu Proyecto</span>
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </button>
         </div>
       </div>

@@ -72,11 +72,11 @@ export default function Contact() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 font-display">
             <span className="text-white">Contáctanos</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+          <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto px-4">
             ¿Listo para transformar tu negocio? Estamos aquí para ayudarte a crear 
             la presencia digital que tu empresa merece.
           </p>
@@ -85,13 +85,13 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Form */}
           <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
               Envíanos un mensaje
             </h3>
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="name" className="block text-xs font-medium text-gray-300 mb-2">
                     Nombre completo
                   </label>
                   <input
@@ -106,7 +106,7 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="email" className="block text-xs font-medium text-gray-300 mb-2">
                     Email
                   </label>
                   <input
@@ -122,7 +122,7 @@ export default function Contact() {
                 </div>
               </div>
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="phone" className="block text-xs font-medium text-gray-300 mb-2">
                   Teléfono (opcional)
                 </label>
                 <input
@@ -136,7 +136,7 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="message" className="block text-xs font-medium text-gray-300 mb-2">
                   Mensaje
                 </label>
                 <textarea
@@ -153,7 +153,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center space-x-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-semibold text-base sm:text-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>{isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}</span>
@@ -164,7 +164,7 @@ export default function Contact() {
           {/* Contact Information */}
           <div className="space-y-6 sm:space-y-8">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
                 Información de contacto
               </h3>
               <div className="space-y-3 sm:space-y-4">
@@ -180,8 +180,8 @@ export default function Contact() {
                         <IconComponent className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-white text-sm sm:text-base">{info.title}</h4>
-                        <p className="text-gray-300 text-sm sm:text-base">{info.value}</p>
+                        <h4 className="font-semibold text-white text-xs sm:text-sm">{info.title}</h4>
+                        <p className="text-gray-300 text-xs sm:text-sm">{info.value}</p>
                       </div>
                     </a>
                   );
@@ -191,7 +191,7 @@ export default function Contact() {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
                 Síguenos
               </h3>
               <div className="flex space-x-3 sm:space-x-4">
@@ -212,10 +212,10 @@ export default function Contact() {
 
             {/* Additional Info */}
             <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6">
-              <h4 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">
+              <h4 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">
                 ¿Por qué elegirnos?
               </h4>
-              <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
+              <ul className="space-y-2 text-gray-300 text-xs sm:text-sm">
                 <li className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
                   <span>Respuesta rápida en 24 horas</span>

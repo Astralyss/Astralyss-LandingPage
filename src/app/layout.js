@@ -1,14 +1,15 @@
-import { Inter, Poppins } from "next/font/google";
+import { Roboto, Open_Sans } from "next/font/google";
 import "./globals.css";
 import JsonLd from "./components/JsonLd";
 
-const inter = Inter({
-  variable: "--font-inter",
+const roboto = Roboto({
+  variable: "--font-roboto",
+  weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
 });
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
@@ -78,7 +79,7 @@ export default function RootLayout({ children }) {
         <JsonLd />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} antialiased bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white`}
+        className={`${roboto.variable} ${openSans.variable} antialiased bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white text-sm`}
       >
         {children}
       </body>

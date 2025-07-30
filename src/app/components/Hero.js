@@ -6,9 +6,19 @@ import { ArrowRight, ChevronDown, Play, Eye } from 'lucide-react';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const [floatingElements, setFloatingElements] = useState([]);
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Generar posiciones aleatorias solo en el cliente
+    const elements = [...Array(4)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 2}s`,
+      animationDuration: `${3 + Math.random() * 2}s`,
+    }));
+    setFloatingElements(elements);
   }, []);
 
   const technologies = [
@@ -39,16 +49,11 @@ export default function Hero() {
 
       {/* Floating Elements - Más sutiles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(4)].map((_, i) => (
+        {floatingElements.map((element, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-blue-500/30 rounded-full animate-pulse-slow"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 2}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-            }}
+            style={element}
           />
         ))}
       </div>
@@ -56,33 +61,33 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Main Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 leading-tight font-display">
             <span className="text-white">Transforma Tu </span>
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Negocio</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-4 sm:mb-6 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
             En Astralyss, impulsamos el crecimiento de tu marca con innovación, 
             calidad y tecnología de vanguardia. Nos enfocamos en cada detalle para ofrecerte 
             soluciones de alto impacto que marquen la diferencia.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-4">
-            <button className="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-base sm:text-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8 px-4">
+            <button className="w-full sm:w-auto flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
               <span>Comienza tu Proyecto</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
-            <button className="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 sm:px-8 py-3 sm:py-4 bg-slate-800/30 backdrop-blur-sm text-white rounded-full font-semibold text-base sm:text-lg hover:bg-slate-700/30 transition-all duration-300 border border-slate-600/30 hover:border-blue-500/50">
-              <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+            <button className="w-full sm:w-auto flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-slate-800/30 backdrop-blur-sm text-white rounded-full font-semibold text-sm sm:text-base hover:bg-slate-700/30 transition-all duration-300 border border-slate-600/30 hover:border-blue-500/50">
+              <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Ver Nuestro Trabajo</span>
             </button>
           </div>
 
           {/* Technology Stack */}
-          <div className="mt-12 sm:mt-16">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-400 mb-4 sm:mb-6">
+          <div className="mt-8 sm:mt-12">
+            <h3 className="text-sm sm:text-base font-semibold text-gray-400 mb-3 sm:mb-4">
               Tecnologías que utilizamos
             </h3>
             <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6 max-w-5xl mx-auto px-4">
@@ -103,7 +108,7 @@ export default function Hero() {
                       className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 transition-all duration-300 group-hover:filter group-hover:brightness-110"
                     />
                   </div>
-                  <span className="text-xs sm:text-sm text-gray-400 group-hover:text-white transition-colors duration-300 text-center">
+                  <span className="text-xs text-gray-400 group-hover:text-white transition-colors duration-300 text-center">
                     {tech.name}
                   </span>
                 </div>

@@ -68,12 +68,12 @@ export default function Services() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 font-display">
             <span className="text-white">Nuestras </span>
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Soluciones</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+          <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto px-4">
             Más que páginas web, creamos soluciones que destacan y marcan la diferencia
           </p>
         </div>
@@ -99,10 +99,10 @@ export default function Services() {
                       <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
+                      <h3 className="text-base sm:text-lg font-semibold text-white mb-2">
                         {service.title}
                       </h3>
-                      <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                         {service.description}
                       </p>
                       {activeService === index && (
@@ -110,7 +110,7 @@ export default function Services() {
                           {service.features.map((feature, featureIndex) => (
                             <div key={featureIndex} className="flex items-center space-x-2">
                               <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                              <span className="text-sm text-gray-300">{feature}</span>
+                              <span className="text-xs text-gray-300">{feature}</span>
                             </div>
                           ))}
                         </div>
@@ -150,14 +150,14 @@ export default function Services() {
               <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
                 <Lightning className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-white">Diseño Funcional</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-white">Diseño Funcional</h3>
             </div>
-            <p className="text-gray-300 mb-4 text-sm sm:text-base">
+            <p className="text-gray-300 mb-4 text-xs sm:text-sm">
               Interfaces diseñadas para una carga rápida y un rendimiento óptimo.
             </p>
             <div className="flex items-center space-x-2 text-blue-400">
               <CheckCircle className="w-4 h-4" />
-              <span className="text-sm">Optimización de velocidad</span>
+              <span className="text-xs">Optimización de velocidad</span>
             </div>
           </div>
           
@@ -166,14 +166,14 @@ export default function Services() {
               <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
                 <Smartphone className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-white">First Mobile</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-white">First Mobile</h3>
             </div>
-            <p className="text-gray-300 mb-4 text-sm sm:text-base">
+            <p className="text-gray-300 mb-4 text-xs sm:text-sm">
               Optimizado para dispositivos móviles desde el primer momento.
             </p>
             <div className="flex items-center space-x-2 text-blue-400">
               <CheckCircle className="w-4 h-4" />
-              <span className="text-sm">Responsive design</span>
+              <span className="text-xs">Responsive design</span>
             </div>
           </div>
         </div>

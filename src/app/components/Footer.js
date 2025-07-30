@@ -52,11 +52,11 @@ export default function Footer() {
                 height={40}
                 className="w-8 h-8 sm:w-10 sm:h-10"
               />
-              <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="text-base sm:text-lg font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-display">
                 Astralyss
               </span>
             </div>
-            <p className="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+            <p className="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-xs sm:text-sm">
               Impulsamos el crecimiento de tu marca con innovación, 
               calidad y tecnología de vanguardia.
             </p>
@@ -79,13 +79,13 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Navegación</h3>
+            <h3 className="text-sm sm:text-base font-semibold text-white mb-2 sm:mb-3">Navegación</h3>
             <ul className="space-y-1 sm:space-y-2">
               {footerLinks.navegacion.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
                   >
                     {link.name}
                   </Link>
@@ -96,13 +96,13 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Servicios</h3>
+            <h3 className="text-sm sm:text-base font-semibold text-white mb-2 sm:mb-3">Servicios</h3>
             <ul className="space-y-1 sm:space-y-2">
               {footerLinks.servicios.map((service, index) => (
                 <li key={index}>
                   <Link
                     href={service.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
                   >
                     {service.name}
                   </Link>
@@ -113,13 +113,13 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Contacto</h3>
+            <h3 className="text-sm sm:text-base font-semibold text-white mb-2 sm:mb-3">Contacto</h3>
             <ul className="space-y-1 sm:space-y-2">
               {footerLinks.contacto.map((contact, index) => (
                 <li key={index}>
                   <a
                     href={contact.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
                   >
                     {contact.name}
                   </a>
