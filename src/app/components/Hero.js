@@ -68,9 +68,9 @@ export default function Hero() {
 
           {/* Subtitle */}
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-4 sm:mb-6 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
-            En Astralyss, impulsamos el crecimiento de tu marca con innovación, 
-            calidad y tecnología de vanguardia. Nos enfocamos en cada detalle para ofrecerte 
-            soluciones de alto impacto que marquen la diferencia.
+            Desarrollamos páginas web y aplicaciones completamente a medida, optimizadas para alto rendimiento 
+            y escalabilidad. Cada proyecto es único, diseñado específicamente para las necesidades de tu negocio 
+            con las tecnologías más modernas y eficientes del mercado.
           </p>
 
           {/* CTA Buttons */}

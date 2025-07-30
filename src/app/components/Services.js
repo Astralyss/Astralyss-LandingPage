@@ -125,7 +125,7 @@ export default function Services() {
           {/* Service Image */}
           <div className="relative order-first lg:order-last">
             <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10"></div>
+              {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10"></div> */}
               <div className="relative z-10">
                 <Image
                   src={services[activeService].image}
