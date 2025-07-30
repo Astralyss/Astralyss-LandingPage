@@ -2,11 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ArrowRight, ChevronDown, Play, Eye } from 'lucide-react';
+import { ArrowRight, ChevronDown, Play, Eye, CheckCircle, Zap, Shield, Users, Clock, Star } from 'lucide-react';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [floatingElements, setFloatingElements] = useState([]);
+  const [counters, setCounters] = useState({
+    projects: 0,
+    clients: 0,
+    satisfaction: 0
+  });
 
   useEffect(() => {
     setIsVisible(true);
@@ -19,27 +24,63 @@ export default function Hero() {
       animationDuration: `${3 + Math.random() * 2}s`,
     }));
     setFloatingElements(elements);
+
+    // Animación de contadores
+    const animateCounters = () => {
+      const targetProjects = 50;
+      const targetClients = 30;
+      const targetSatisfaction = 98;
+      
+      let currentProjects = 0;
+      let currentClients = 0;
+      let currentSatisfaction = 0;
+      
+      const interval = setInterval(() => {
+        if (currentProjects < targetProjects) currentProjects += 1;
+        if (currentClients < targetClients) currentClients += 1;
+        if (currentSatisfaction < targetSatisfaction) currentSatisfaction += 1;
+        
+        setCounters({
+          projects: currentProjects,
+          clients: currentClients,
+          satisfaction: currentSatisfaction
+        });
+        
+        if (currentProjects >= targetProjects && currentClients >= targetClients && currentSatisfaction >= targetSatisfaction) {
+          clearInterval(interval);
+        }
+      }, 50);
+    };
+
+    // Iniciar animación después de 1 segundo
+    setTimeout(animateCounters, 1000);
   }, []);
 
-  const technologies = [
-    { name: 'Astro', icon: '/svg/astro.svg' },
-    { name: 'Vue', icon: '/svg/vue.svg' },
-    { name: 'React', icon: '/svg/react.svg' },
-    { name: 'TypeScript', icon: '/svg/typeScript.svg' },
-    { name: 'Tailwind CSS', icon: '/svg/tailwindcss.svg' },
-    { name: 'Next.js', icon: '/svg/next.svg' },
-    { name: 'Node.js', icon: '/svg/nodejs.svg' },
-    { name: 'HTML5', icon: '/svg/HTML5.svg' },
-    { name: 'CSS3', icon: '/svg/CSS3.svg' },
-    { name: 'JavaScript', icon: '/svg/javaScript.svg' },
-    { name: 'Git', icon: '/svg/git.svg' },
-    { name: 'Supabase', icon: '/svg/supabase.svg' },
-    { name: 'MySQL', icon: '/svg/mysql.svg' },
-    { name: 'Bash', icon: '/svg/bash.svg' },
+  const features = [
+    {
+      icon: Zap,
+      title: "Alto Rendimiento",
+      description: "Optimización completa para velocidad máxima"
+    },
+    {
+      icon: Shield,
+      title: "Seguridad Avanzada",
+      description: "Protección de datos de nivel empresarial"
+    },
+    {
+      icon: Users,
+      title: "Soporte 24/7",
+      description: "Asistencia técnica siempre disponible"
+    },
+    {
+      icon: Clock,
+      title: "Entrega Rápida",
+      description: "Proyectos entregados en tiempo récord"
+    }
   ];
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.08),transparent_50%)]"></div>
@@ -74,7 +115,7 @@ export default function Hero() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8 px-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-4">
             <button className="w-full sm:w-auto flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
               <span>Comienza tu Proyecto</span>
               <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -85,34 +126,69 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Technology Stack */}
-          <div className="mt-8 sm:mt-12">
-            <h3 className="text-sm sm:text-base font-semibold text-gray-400 mb-3 sm:mb-4">
-              Tecnologías que utilizamos
-            </h3>
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6 max-w-5xl mx-auto px-4">
-              {technologies.map((tech, index) => (
-                <div
-                  key={tech.name}
-                  className="flex flex-col items-center space-y-1 sm:space-y-2 group"
-                  style={{
-                    animationDelay: `${index * 0.05}s`,
-                  }}
-                >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-slate-800/30 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-slate-700/30 transition-all duration-300 group-hover:scale-110 border border-slate-700/30">
-                    <Image
-                      src={tech.icon}
-                      alt={tech.name}
-                      width={32}
-                      height={32}
-                      className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 transition-all duration-300 group-hover:filter group-hover:brightness-110"
-                    />
-                  </div>
-                  <span className="text-xs text-gray-400 group-hover:text-white transition-colors duration-300 text-center">
-                    {tech.name}
-                  </span>
+          {/* Statistics Section */}
+          <div className="mt-8 sm:mt-12 mb-8 sm:mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto px-4">
+              <div className="text-center group">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-300">
+                  <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400" />
                 </div>
-              ))}
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1">
+                  +{counters.projects}
+                </div>
+                <div className="text-sm sm:text-base text-gray-400">Proyectos Completados</div>
+              </div>
+              
+              <div className="text-center group">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-300">
+                  <Users className="w-8 h-8 sm:w-10 sm:h-10 text-green-400" />
+                </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1">
+                  +{counters.clients}
+                </div>
+                <div className="text-sm sm:text-base text-gray-400">Clientes Satisfechos</div>
+              </div>
+              
+              <div className="text-center group">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-300">
+                  <Star className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-400" />
+                </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1">
+                  {counters.satisfaction}%
+                </div>
+                <div className="text-sm sm:text-base text-gray-400">Satisfacción</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-8 sm:mt-12">
+            <h3 className="text-sm sm:text-base font-semibold text-gray-400 mb-6 sm:mb-8">
+              ¿Por qué elegirnos?
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto px-4">
+              {features.map((feature, index) => {
+                const IconComponent = feature.icon;
+                return (
+                  <div
+                    key={feature.title}
+                    className="group p-4 sm:p-6 bg-slate-800/30 backdrop-blur-sm rounded-xl border border-slate-700/30 hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
+                    style={{
+                      animationDelay: `${index * 0.1}s`,
+                    }}
+                  >
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-300">
+                      <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400" />
+                    </div>
+                    <h4 className="text-sm sm:text-base font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">
+                      {feature.title}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
