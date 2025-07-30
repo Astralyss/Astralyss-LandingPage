@@ -85,7 +85,7 @@ export default function About() {
 
           {/* Image/Visual */}
           <div className="relative order-first lg:order-last">
-            <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 relative overflow-hidden border border-slate-700/30">
+            <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10"></div>
               <div className="relative z-10 text-center">
                 <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 sm:mb-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
@@ -112,7 +112,7 @@ export default function About() {
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <div key={index} className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-700/30 hover:border-slate-600/30 transition-all duration-300">
+              <div key={index} className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300">
                 <div className="flex justify-center mb-2">
                   <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
                 </div>
@@ -132,7 +132,7 @@ export default function About() {
           {values.map((value, index) => {
             const IconComponent = value.icon;
             return (
-              <div key={index} className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center border border-slate-700/30 hover:border-slate-600/30 transition-all duration-300">
+              <div key={index} className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
                   <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>

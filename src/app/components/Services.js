@@ -87,10 +87,10 @@ export default function Services() {
               return (
                 <div
                   key={service.id}
-                  className={`bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 cursor-pointer transition-all duration-500 border ${
+                  className={`bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 cursor-pointer transition-all duration-500 ${
                     activeService === index
-                      ? 'border-blue-500/30 shadow-lg shadow-blue-500/20'
-                      : 'border-slate-700/30 hover:border-slate-600/30'
+                      ? 'shadow-lg shadow-blue-500/20'
+                      : 'hover:shadow-lg hover:shadow-slate-600/20'
                   }`}
                   onClick={() => setActiveService(index)}
                 >
@@ -124,7 +124,7 @@ export default function Services() {
 
           {/* Service Image */}
           <div className="relative order-first lg:order-last">
-            <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 relative overflow-hidden border border-slate-700/30">
+            <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10"></div>
               <div className="relative z-10">
                 <Image
@@ -145,7 +145,7 @@ export default function Services() {
 
         {/* Additional Features */}
         <div className="mt-16 sm:mt-20 grid md:grid-cols-2 gap-6 sm:gap-8">
-          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-slate-700/30 hover:border-slate-600/30 transition-all duration-300">
+          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300">
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
                 <Lightning className="w-5 h-5 text-white" />
@@ -161,7 +161,7 @@ export default function Services() {
             </div>
           </div>
           
-          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-slate-700/30 hover:border-slate-600/30 transition-all duration-300">
+          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300">
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
                 <Smartphone className="w-5 h-5 text-white" />

@@ -38,9 +38,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-slate-900/60 backdrop-blur-xl border-b border-slate-700/30 shadow-2xl'
+          ? 'bg-slate-900/60 backdrop-blur-xl shadow-2xl'
           : 'bg-transparent'
       }`}
     >
@@ -123,7 +123,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-slate-900/90 backdrop-blur-xl rounded-xl mt-2 mb-4 p-6 border border-slate-700/30 animate-fade-in-up shadow-2xl">
+          <div className="md:hidden bg-slate-900/90 backdrop-blur-xl rounded-xl mt-2 mb-4 p-6 animate-fade-in-up shadow-2xl">
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => {
                 const IconComponent = item.icon;
@@ -139,7 +139,7 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-              <div className="pt-2 border-t border-slate-700/30">
+              <div className="pt-2">
                 <Link
                   href="#contacto"
                   onClick={() => setIsMobileMenuOpen(false)}

@@ -61,7 +61,7 @@ export default function Testimonials() {
 
         {/* Testimonials */}
         <div className="max-w-4xl mx-auto">
-          <div className="bg-slate-800/30 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 relative overflow-hidden border border-slate-700/30">
+          <div className="bg-slate-800/30 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5"></div>
             <div className="relative z-10">
               {/* Quote Icon */}
@@ -120,21 +120,21 @@ export default function Testimonials() {
 
         {/* Stats */}
         <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          <div className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-700/30 hover:border-slate-600/30 transition-all duration-300">
+          <div className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300">
             <div className="flex justify-center mb-2">
               <Users className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
             </div>
             <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 sm:mb-2">100%</div>
             <div className="text-gray-300 text-sm sm:text-base">Clientes Satisfechos</div>
           </div>
-          <div className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-700/30 hover:border-slate-600/30 transition-all duration-300">
+          <div className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300">
             <div className="flex justify-center mb-2">
               <Award className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
             </div>
             <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 sm:mb-2">5.0</div>
             <div className="text-gray-300 text-sm sm:text-base">Calificación Promedio</div>
           </div>
-          <div className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-700/30 hover:border-slate-600/30 transition-all duration-300">
+          <div className="text-center bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300">
             <div className="flex justify-center mb-2">
               <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
             </div>

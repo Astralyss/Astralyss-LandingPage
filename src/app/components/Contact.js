@@ -84,7 +84,7 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Form */}
-          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-slate-700/30">
+          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8">
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
               Envíanos un mensaje
             </h3>
@@ -101,7 +101,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/30 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors duration-300"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
                     placeholder="Tu nombre"
                   />
                 </div>
@@ -116,7 +116,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/30 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors duration-300"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
                     placeholder="tu@email.com"
                   />
                 </div>
@@ -131,7 +131,7 @@ export default function Contact() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/30 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors duration-300"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
                   placeholder="+52 55 1234 5678"
                 />
               </div>
@@ -146,7 +146,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/30 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors duration-300 resize-none"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 resize-none"
                   placeholder="Cuéntanos sobre tu proyecto..."
                 />
               </div>
@@ -174,7 +174,7 @@ export default function Contact() {
                     <a
                       key={index}
                       href={info.href}
-                      className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-slate-800/30 backdrop-blur-sm rounded-lg border border-slate-700/30 hover:border-slate-600/30 transition-all duration-300"
+                      className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-slate-800/30 backdrop-blur-sm rounded-lg hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300"
                     >
                       <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
                         <IconComponent className="w-5 h-5 text-white" />
@@ -201,7 +201,7 @@ export default function Contact() {
                     <a
                       key={index}
                       href={social.href}
-                      className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-800/30 backdrop-blur-sm rounded-lg flex items-center justify-center border border-slate-700/30 hover:border-slate-600/30 transition-all duration-300"
+                      className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-800/30 backdrop-blur-sm rounded-lg flex items-center justify-center hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300"
                     >
                       <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 hover:text-white transition-colors duration-300" />
                     </a>
@@ -211,7 +211,7 @@ export default function Contact() {
             </div>
 
             {/* Additional Info */}
-            <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-700/30">
+            <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6">
               <h4 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">
                 ¿Por qué elegirnos?
               </h4>
