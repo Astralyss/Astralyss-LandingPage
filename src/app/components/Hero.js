@@ -80,7 +80,8 @@ export default function Hero() {
   ];
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
+    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16">
+      {/* Background Image */}
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.08),transparent_50%)]"></div>
