@@ -221,7 +221,7 @@ export default function Portfolio() {
           <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-0">
                                             {/* Before/After Comparison */}
-               <div className="relative h-48 lg:h-80 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center pt-4 lg:pt-8">
+               <div className="relative h-48 lg:h-90 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-xl mt-24 sm:rounded-2xl overflow-hidden">
                  <Image
                    src={`/images/${activeFilter === 'web' ? 'web-page' : 
                           activeFilter === 'ecommerce' ? 'e-comerce' :
