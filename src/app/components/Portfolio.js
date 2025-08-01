@@ -2,125 +2,183 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ExternalLink, Github, Eye, Star, TrendingUp, Users, Zap } from 'lucide-react';
+import { ExternalLink, Github, Eye, Star, TrendingUp, Users, Zap, ArrowRight, Target, Rocket, BarChart3, ShoppingCart, Globe, Smartphone } from 'lucide-react';
 
 export default function Portfolio() {
-  const [activeProject, setActiveProject] = useState(0);
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeCase, setActiveCase] = useState(0);
+  const [activeFilter, setActiveFilter] = useState('web');
 
-  const projects = [
+  const transformationCases = [
     {
       id: 1,
-      title: 'E-commerce Premium',
-      category: 'ecommerce',
-      description: 'Plataforma de comercio electrónico completa con gestión de inventario, pasarelas de pago y panel administrativo avanzado.',
-      image: '/images/project1.jpg',
-      technologies: ['Next.js', 'TypeScript', 'Stripe', 'Supabase'],
-      features: [
-        'Carrito de compras avanzado',
-        'Sistema de pagos seguro',
-        'Panel administrativo completo',
-        'Optimización SEO'
-      ],
-      stats: {
-        performance: 98,
-        users: '10K+',
-        conversion: '15%'
+      title: 'Negocio Local a Página Web Profesional',
+      category: 'web',
+      businessType: 'Negocio Local',
+      description: 'Transformamos un negocio sin presencia digital en una página web profesional que genera leads y ventas.',
+      before: {
+        sales: '10K/mes',
+        reach: 'Solo local',
+        customers: '30 clientes',
+        operations: 'Sin presencia digital'
       },
-      links: {
-        live: '#',
-        github: '#'
+      after: {
+        sales: '35K/mes',
+        reach: 'Toda la ciudad',
+        customers: '150+ clientes',
+        operations: 'Digital'
+      },
+      technologies: ['Next.js', 'Tailwind CSS', 'Vercel', 'SEO'],
+      benefits: [
+        'Presencia digital profesional',
+        'Más clientes online',
+        'Credibilidad mejorada',
+        'SEO optimizado'
+      ],
+      features: [
+        'Diseño responsive moderno',
+        'Optimización SEO completa',
+        'Formularios de contacto',
+        'Analytics integrado'
+      ],
+      transformation: {
+        growth: '250%',
+        efficiency: '60%',
+        reach: 'Metropolitano'
       }
     },
     {
       id: 2,
-      title: 'Dashboard Empresarial',
-      category: 'dashboard',
-      description: 'Dashboard interactivo para análisis de datos empresariales con gráficos dinámicos y reportes en tiempo real.',
-      image: '/images/project2.jpg',
-      technologies: ['React', 'D3.js', 'Node.js', 'MongoDB'],
-      features: [
-        'Gráficos interactivos',
-        'Datos en tiempo real',
-        'Reportes personalizados',
-        'Exportación de datos'
-      ],
-      stats: {
-        performance: 95,
-        users: '5K+',
-        conversion: '25%'
+      title: 'De Tienda Local a E-commerce Nacional',
+      category: 'ecommerce',
+      businessType: 'Tienda de Ropa',
+      description: 'Transformamos una pequeña tienda de ropa local en una plataforma de e-commerce que vende a todo el país.',
+      before: {
+        sales: '5K/mes',
+        reach: 'Solo local',
+        customers: '50 clientes',
+        operations: 'Manual'
       },
-      links: {
-        live: '#',
-        github: '#'
+      after: {
+        sales: '50K/mes',
+        reach: 'Todo México',
+        customers: '500+ clientes',
+        operations: 'Automatizado'
+      },
+      technologies: ['Next.js', 'Stripe', 'Supabase', 'Vercel'],
+      benefits: [
+        'Ventas 24/7',
+        'Alcance nacional',
+        'Reducción de costos',
+        'Escalabilidad automática'
+      ],
+      features: [
+        'Catálogo digital completo',
+        'Sistema de pagos seguro',
+        'Gestión de inventario automática',
+        'Marketing digital integrado'
+      ],
+      transformation: {
+        growth: '900%',
+        efficiency: '80%',
+        reach: 'Nacional'
       }
     },
     {
       id: 3,
-      title: 'App Móvil Híbrida',
-      category: 'mobile',
-      description: 'Aplicación móvil híbrida para gestión de tareas con sincronización en la nube y notificaciones push.',
-      image: '/images/project3.jpg',
-      technologies: ['React Native', 'Firebase', 'Redux', 'Expo'],
-      features: [
-        'Sincronización offline',
-        'Notificaciones push',
-        'Autenticación segura',
-        'Multiplataforma'
-      ],
-      stats: {
-        performance: 92,
-        users: '20K+',
-        conversion: '30%'
+      title: 'Procesos Manuales a Sistema Web',
+      category: 'app',
+      businessType: 'Empresa de Servicios',
+      description: 'Convertimos procesos manuales y Excel en un sistema web automatizado que optimiza operaciones.',
+      before: {
+        sales: '25K/mes',
+        reach: 'Solo presencial',
+        customers: '20 clientes',
+        operations: 'Manual con Excel'
       },
-      links: {
-        live: '#',
-        github: '#'
+      after: {
+        sales: '80K/mes',
+        reach: 'Toda la región',
+        customers: '100+ clientes',
+        operations: 'Automatizado'
+      },
+      technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS'],
+      benefits: [
+        'Procesos automatizados',
+        'Mejor control de datos',
+        'Reducción de errores',
+        'Escalabilidad'
+      ],
+      features: [
+        'Dashboard administrativo',
+        'Gestión de clientes',
+        'Reportes automáticos',
+        'Sistema de usuarios'
+      ],
+      transformation: {
+        growth: '220%',
+        efficiency: '85%',
+        reach: 'Regional'
       }
     },
     {
       id: 4,
-      title: 'Landing Page Corporativa',
-      category: 'web',
-      description: 'Sitio web corporativo optimizado para conversión con diseño moderno y experiencia de usuario excepcional.',
-      image: '/images/project4.jpg',
-      technologies: ['Vue.js', 'Tailwind CSS', 'Vite', 'Netlify'],
-      features: [
-        'Diseño responsive',
-        'Optimización SEO',
-        'Analytics integrado',
-        'Formularios inteligentes'
-      ],
-      stats: {
-        performance: 99,
-        users: '50K+',
-        conversion: '12%'
+      title: 'Restaurante a Plataforma de Delivery',
+      category: 'mobile',
+      businessType: 'Restaurante Familiar',
+      description: 'Convertimos un restaurante tradicional en una plataforma de delivery con app móvil y gestión inteligente.',
+      before: {
+        sales: '15K/mes',
+        reach: 'Solo presencial',
+        customers: '100 clientes',
+        operations: 'Manual'
       },
-      links: {
-        live: '#',
-        github: '#'
+      after: {
+        sales: '80K/mes',
+        reach: 'Toda la ciudad',
+        customers: '1000+ clientes',
+        operations: 'Digital'
+      },
+      technologies: ['React Native', 'Firebase', 'Node.js', 'MongoDB'],
+      benefits: [
+        'Más órdenes diarias',
+        'Clientes recurrentes',
+        'Optimización de rutas',
+        'Gestión eficiente'
+      ],
+      features: [
+        'App móvil para clientes',
+        'Panel de gestión para cocina',
+        'Sistema de delivery tracking',
+        'Análisis de ventas en tiempo real'
+      ],
+      transformation: {
+        growth: '433%',
+        efficiency: '70%',
+        reach: 'Metropolitano'
       }
     }
   ];
 
   const filters = [
-    { id: 'all', label: 'Todos' },
-    { id: 'web', label: 'Web' },
+    { id: 'web', label: 'Páginas Web' },
     { id: 'ecommerce', label: 'E-commerce' },
-    { id: 'dashboard', label: 'Dashboard' },
-    { id: 'mobile', label: 'Móvil' }
+    { id: 'app', label: 'Aplicaciones Web' },
+    { id: 'mobile', label: 'Apps Móviles' }
   ];
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const filteredCases = transformationCases.filter(case_ => case_.category === activeFilter);
+
+  // Reset activeCase when filter changes
+  useEffect(() => {
+    setActiveCase(0);
+  }, [activeFilter]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveProject((prev) => (prev + 1) % filteredProjects.length);
-    }, 5000);
+      setActiveCase((prev) => (prev + 1) % filteredCases.length);
+    }, 6000);
     return () => clearInterval(interval);
-  }, [filteredProjects.length]);
+  }, [filteredCases.length]);
 
   return (
     <section id="portafolio" className="py-16 sm:py-20 relative overflow-hidden">
@@ -133,11 +191,11 @@ export default function Portfolio() {
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 font-display">
-            <span className="text-white">Casos de </span>
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Éxito</span>
+            <span className="text-white">Transforma tu </span>
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Negocio</span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto px-4">
-            Proyectos que demuestran nuestra capacidad para crear soluciones digitales excepcionales
+            Casos reales de cómo la tecnología puede llevar tu negocio al siguiente nivel
           </p>
         </div>
 
@@ -158,148 +216,213 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Featured Project */}
+        {/* Featured Transformation Case */}
         <div className="mb-12 sm:mb-16">
           <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-0">
-              {/* Project Image */}
-              <div className="relative h-64 lg:h-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20">
-                <div className="absolute inset-0 bg-slate-900/50 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Eye className="w-8 h-8 text-white" />
-                    </div>
-                    <p className="text-gray-300 text-sm">Vista previa del proyecto</p>
-                  </div>
-                </div>
-              </div>
+                                            {/* Before/After Comparison */}
+               <div className="relative h-48 lg:h-80 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center pt-4 lg:pt-8">
+                 <Image
+                   src={`/images/${activeFilter === 'web' ? 'web-page' : 
+                          activeFilter === 'ecommerce' ? 'e-comerce' :
+                          activeFilter === 'app' ? 'web-app' : 'mobil-app'}.jpg`}
+                   alt="Transformación Digital"
+                   fill
+                   className="object-cover"
+                   priority
+                 />
+               </div>
 
-              {/* Project Details */}
+              {/* Case Details */}
               <div className="p-6 sm:p-8">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    {filteredProjects[activeProject].title}
-                  </h3>
+                                 <div className="flex items-center justify-between mb-4">
+                   <div>
+                     <h3 className="text-xl sm:text-2xl font-bold text-white">
+                       {filteredCases[activeCase]?.title || 'Cargando...'}
+                     </h3>
+                     <p className="text-blue-400 text-sm font-medium">
+                       {filteredCases[activeCase]?.businessType || ''}
+                     </p>
+                   </div>
                   <div className="flex items-center space-x-2">
-                    <button className="p-2 bg-slate-700/50 rounded-lg hover:bg-slate-600/50 transition-colors">
-                      <ExternalLink className="w-4 h-4 text-gray-300" />
-                    </button>
-                    <button className="p-2 bg-slate-700/50 rounded-lg hover:bg-slate-600/50 transition-colors">
-                      <Github className="w-4 h-4 text-gray-300" />
-                    </button>
+                    <div className="p-2 bg-green-500/20 rounded-lg">
+                      <TrendingUp className="w-4 h-4 text-green-400" />
+                    </div>
                   </div>
                 </div>
 
-                <p className="text-gray-300 mb-6 leading-relaxed">
-                  {filteredProjects[activeProject].description}
-                </p>
+                                 <p className="text-gray-300 mb-6 leading-relaxed">
+                   {filteredCases[activeCase]?.description || ''}
+                 </p>
 
-                {/* Technologies */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-white mb-3">Tecnologías utilizadas</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {filteredProjects[activeProject].technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                {/* Before/After Stats */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  {/* Before */}
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
+                    <h4 className="text-red-400 font-semibold text-sm mb-3 flex items-center">
+                      <Target className="w-4 h-4 mr-2" />
+                      ANTES
+                    </h4>
+                    <div className="space-y-2">
+                                             <div className="flex justify-between text-xs">
+                         <span className="text-gray-300">Ventas:</span>
+                         <span className="text-red-300 font-medium">{filteredCases[activeCase]?.before?.sales || '-'}</span>
+                       </div>
+                       <div className="flex justify-between text-xs">
+                         <span className="text-gray-300">Alcance:</span>
+                         <span className="text-red-300 font-medium">{filteredCases[activeCase]?.before?.reach || '-'}</span>
+                       </div>
+                       <div className="flex justify-between text-xs">
+                         <span className="text-gray-300">Clientes:</span>
+                         <span className="text-red-300 font-medium">{filteredCases[activeCase]?.before?.customers || '-'}</span>
+                       </div>
+                    </div>
                   </div>
+
+                  {/* After */}
+                  <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
+                    <h4 className="text-green-400 font-semibold text-sm mb-3 flex items-center">
+                      <Rocket className="w-4 h-4 mr-2" />
+                      DESPUÉS
+                    </h4>
+                    <div className="space-y-2">
+                                             <div className="flex justify-between text-xs">
+                         <span className="text-gray-300">Ventas:</span>
+                         <span className="text-green-300 font-medium">{filteredCases[activeCase]?.after?.sales || '-'}</span>
+                       </div>
+                       <div className="flex justify-between text-xs">
+                         <span className="text-gray-300">Alcance:</span>
+                         <span className="text-green-300 font-medium">{filteredCases[activeCase]?.after?.reach || '-'}</span>
+                       </div>
+                       <div className="flex justify-between text-xs">
+                         <span className="text-gray-300">Clientes:</span>
+                         <span className="text-green-300 font-medium">{filteredCases[activeCase]?.after?.customers || '-'}</span>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Business Benefits */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-white mb-3">✨ Lo que lograron</h4>
+                                     <div className="flex flex-wrap gap-2">
+                     {filteredCases[activeCase]?.benefits?.map((benefit) => (
+                       <span
+                         key={benefit}
+                         className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-medium"
+                       >
+                         {benefit}
+                       </span>
+                     )) || []}
+                   </div>
                 </div>
 
                 {/* Features */}
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-white mb-3">Características principales</h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {filteredProjects[activeProject].features.map((feature, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <Star className="w-3 h-3 text-blue-500 flex-shrink-0" />
-                        <span className="text-xs text-gray-300">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <h4 className="text-sm font-semibold text-white mb-3">Soluciones implementadas</h4>
+                                     <div className="grid grid-cols-2 gap-2">
+                     {filteredCases[activeCase]?.features?.map((feature, index) => (
+                       <div key={index} className="flex items-center space-x-2">
+                         <Star className="w-3 h-3 text-blue-500 flex-shrink-0" />
+                         <span className="text-xs text-gray-300">{feature}</span>
+                       </div>
+                     )) || []}
+                   </div>
                 </div>
 
-                {/* Stats */}
+                {/* Transformation Stats */}
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center">
-                    <div className="text-lg font-bold text-blue-400 mb-1">
-                      {filteredProjects[activeProject].stats.performance}%
-                    </div>
-                    <div className="text-xs text-gray-400">Performance</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-lg font-bold text-green-400 mb-1">
-                      {filteredProjects[activeProject].stats.users}
-                    </div>
-                    <div className="text-xs text-gray-400">Usuarios</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-lg font-bold text-purple-400 mb-1">
-                      {filteredProjects[activeProject].stats.conversion}
-                    </div>
-                    <div className="text-xs text-gray-400">Conversión</div>
-                  </div>
+                                     <div className="text-center">
+                     <div className="text-lg font-bold text-green-400 mb-1">
+                       {filteredCases[activeCase]?.transformation?.growth || '-'}
+                     </div>
+                     <div className="text-xs text-gray-400">Crecimiento</div>
+                   </div>
+                   <div className="text-center">
+                     <div className="text-lg font-bold text-blue-400 mb-1">
+                       {filteredCases[activeCase]?.transformation?.efficiency || '-'}
+                     </div>
+                     <div className="text-xs text-gray-400">Eficiencia</div>
+                   </div>
+                   <div className="text-center">
+                     <div className="text-lg font-bold text-purple-400 mb-1">
+                       {filteredCases[activeCase]?.transformation?.reach || '-'}
+                     </div>
+                     <div className="text-xs text-gray-400">Alcance</div>
+                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Project Grid */}
+        {/* Transformation Cases Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredProjects.slice(1).map((project, index) => (
+          {filteredCases.slice(1).map((case_, index) => (
             <div
-              key={project.id}
+              key={case_.id}
               className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300 cursor-pointer"
-              onClick={() => setActiveProject(index + 1)}
+              onClick={() => setActiveCase(index + 1)}
             >
-              {/* Project Image */}
+              {/* Case Icon */}
               <div className="relative h-40 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg mb-4 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Eye className="w-6 h-6 text-white" />
-                  </div>
-                  <p className="text-gray-300 text-xs">Vista previa</p>
+                                     <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                     {case_.category === 'ecommerce' && <ShoppingCart className="w-6 h-6 text-white" />}
+                     {case_.category === 'mobile' && <Smartphone className="w-6 h-6 text-white" />}
+                     {case_.category === 'app' && <BarChart3 className="w-6 h-6 text-white" />}
+                     {case_.category === 'web' && <Globe className="w-6 h-6 text-white" />}
+                   </div>
+                  <p className="text-gray-300 text-xs">{case_.businessType}</p>
                 </div>
               </div>
 
-              {/* Project Info */}
-              <h3 className="text-lg font-semibold text-white mb-2">{project.title}</h3>
-              <p className="text-sm text-gray-300 mb-4 line-clamp-2">{project.description}</p>
+              {/* Case Info */}
+              <h3 className="text-lg font-semibold text-white mb-2">{case_.title}</h3>
+              <p className="text-sm text-gray-300 mb-4 line-clamp-2">{case_.description}</p>
 
-              {/* Technologies */}
+              {/* Before/After Quick Stats */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="bg-red-500/10 rounded-lg p-3">
+                  <div className="text-xs text-red-400 font-medium mb-1">ANTES</div>
+                  <div className="text-xs text-gray-300">{case_.before.sales}</div>
+                </div>
+                <div className="bg-green-500/10 rounded-lg p-3">
+                  <div className="text-xs text-green-400 font-medium mb-1">DESPUÉS</div>
+                  <div className="text-xs text-gray-300">{case_.after.sales}</div>
+                </div>
+              </div>
+
+              {/* Business Benefits */}
               <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.slice(0, 3).map((tech) => (
+                {case_.benefits.slice(0, 3).map((benefit) => (
                   <span
-                    key={tech}
-                    className="px-2 py-1 bg-slate-700/50 text-gray-300 rounded-full text-xs"
+                    key={benefit}
+                    className="px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs"
                   >
-                    {tech}
+                    {benefit}
                   </span>
                 ))}
-                {project.technologies.length > 3 && (
-                  <span className="px-2 py-1 bg-slate-700/50 text-gray-300 rounded-full text-xs">
-                    +{project.technologies.length - 3}
+                {case_.benefits.length > 3 && (
+                  <span className="px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">
+                    +{case_.benefits.length - 3}
                   </span>
                 )}
               </div>
 
-              {/* Stats */}
+              {/* Growth Stats */}
               <div className="flex items-center justify-between text-xs">
                 <div className="flex items-center space-x-1">
                   <TrendingUp className="w-3 h-3 text-green-400" />
-                  <span className="text-gray-300">{project.stats.performance}%</span>
+                  <span className="text-gray-300">{case_.transformation.growth}</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Users className="w-3 h-3 text-blue-400" />
-                  <span className="text-gray-300">{project.stats.users}</span>
+                  <span className="text-gray-300">{case_.transformation.efficiency}</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Zap className="w-3 h-3 text-purple-400" />
-                  <span className="text-gray-300">{project.stats.conversion}</span>
+                  <span className="text-gray-300">{case_.transformation.reach}</span>
                 </div>
               </div>
             </div>
@@ -310,13 +433,14 @@ export default function Portfolio() {
         <div className="text-center mt-12 sm:mt-16">
           <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 max-w-2xl mx-auto">
             <h3 className="text-lg sm:text-xl font-semibold text-white mb-4">
-              ¿Listo para tu próximo proyecto?
+              ¿Listo para transformar tu negocio?
             </h3>
             <p className="text-gray-300 mb-6">
-              Transforma tu idea en una solución digital excepcional con nuestro equipo experto
+              Lleva tu empresa al siguiente nivel con soluciones tecnológicas que escalan tu crecimiento
             </p>
-            <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
-              Comenzar Proyecto
+            <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 flex items-center mx-auto">
+              Transformar mi Negocio
+              <ArrowRight className="w-4 h-4 ml-2" />
             </button>
           </div>
         </div>
