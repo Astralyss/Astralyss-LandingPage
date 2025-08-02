@@ -1,10 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Search, Palette, Code, Rocket, CheckCircle, ArrowRight } from 'lucide-react';
 
 export default function Process() {
   const [activeStep, setActiveStep] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const intervalRef = useRef(null);
 
   const processSteps = [
     {
@@ -61,12 +63,43 @@ export default function Process() {
     }
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const startInterval = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % processSteps.length);
     }, 5000);
-    return () => clearInterval(interval);
-  }, [processSteps.length]);
+  };
+
+  const stopInterval = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    if (!isHovering) {
+      startInterval();
+    } else {
+      stopInterval();
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isHovering, processSteps.length]);
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
 
   return (
     <section id="proceso" className="py-16 sm:py-20 relative overflow-hidden">
@@ -100,6 +133,10 @@ export default function Process() {
                     : 'hover:shadow-lg hover:shadow-slate-600/20 hover:scale-102'
                 }`}
                 onClick={() => setActiveStep(index)}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onTouchStart={handleMouseEnter}
+                onTouchEnd={handleMouseLeave}
               >
                 {/* Step Number */}
                 <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-sm">

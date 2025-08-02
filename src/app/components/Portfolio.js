@@ -13,19 +13,19 @@ export default function Portfolio() {
       id: 1,
       title: 'Negocio Local a Página Web Profesional',
       category: 'web',
-      businessType: 'Negocio Local',
-      description: 'Transformamos un negocio sin presencia digital en una página web profesional que genera leads y ventas.',
+      businessType: 'Restaurante Local',
+      description: 'Transformamos un restaurante sin presencia digital en una página web profesional que genera leads y ventas consistentes.',
       before: {
-        sales: '10K/mes',
-        reach: 'Solo local',
-        customers: '30 clientes',
+        sales: '8K/mes',
+        reach: 'Solo presencial',
+        customers: '25 clientes/mes',
         operations: 'Sin presencia digital'
       },
       after: {
-        sales: '35K/mes',
-        reach: 'Toda la ciudad',
-        customers: '150+ clientes',
-        operations: 'Digital'
+        sales: '18K/mes',
+        reach: 'Toda la zona',
+        customers: '80+ clientes/mes',
+        operations: 'Digital + Presencial'
       },
       technologies: ['Next.js', 'Tailwind CSS', 'Vercel', 'SEO'],
       benefits: [
@@ -41,33 +41,33 @@ export default function Portfolio() {
         'Analytics integrado'
       ],
       transformation: {
-        growth: '250%',
-        efficiency: '60%',
+        growth: '125%',
+        efficiency: '40%',
         reach: 'Metropolitano'
       }
     },
     {
       id: 2,
-      title: 'De Tienda Local a E-commerce Nacional',
+      title: 'De Tienda Local a E-commerce Regional',
       category: 'ecommerce',
       businessType: 'Tienda de Ropa',
-      description: 'Transformamos una pequeña tienda de ropa local en una plataforma de e-commerce que vende a todo el país.',
+      description: 'Transformamos una pequeña tienda de ropa local en una plataforma de e-commerce que vende en toda la región.',
       before: {
-        sales: '5K/mes',
+        sales: '6K/mes',
         reach: 'Solo local',
-        customers: '50 clientes',
+        customers: '40 clientes/mes',
         operations: 'Manual'
       },
       after: {
-        sales: '50K/mes',
-        reach: 'Todo México',
-        customers: '500+ clientes',
+        sales: '22K/mes',
+        reach: 'Toda la región',
+        customers: '180+ clientes/mes',
         operations: 'Automatizado'
       },
       technologies: ['Next.js', 'Stripe', 'Supabase', 'Vercel'],
       benefits: [
         'Ventas 24/7',
-        'Alcance nacional',
+        'Alcance regional',
         'Reducción de costos',
         'Escalabilidad automática'
       ],
@@ -78,9 +78,9 @@ export default function Portfolio() {
         'Marketing digital integrado'
       ],
       transformation: {
-        growth: '900%',
-        efficiency: '80%',
-        reach: 'Nacional'
+        growth: '267%',
+        efficiency: '65%',
+        reach: 'Regional'
       }
     },
     {
@@ -88,17 +88,17 @@ export default function Portfolio() {
       title: 'Procesos Manuales a Sistema Web',
       category: 'app',
       businessType: 'Empresa de Servicios',
-      description: 'Convertimos procesos manuales y Excel en un sistema web automatizado que optimiza operaciones.',
+      description: 'Convertimos procesos manuales y Excel en un sistema web automatizado que optimiza operaciones diarias.',
       before: {
-        sales: '25K/mes',
+        sales: '20K/mes',
         reach: 'Solo presencial',
-        customers: '20 clientes',
+        customers: '15 clientes/mes',
         operations: 'Manual con Excel'
       },
       after: {
-        sales: '80K/mes',
-        reach: 'Toda la región',
-        customers: '100+ clientes',
+        sales: '45K/mes',
+        reach: 'Toda la ciudad',
+        customers: '35+ clientes/mes',
         operations: 'Automatizado'
       },
       technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS'],
@@ -115,9 +115,9 @@ export default function Portfolio() {
         'Sistema de usuarios'
       ],
       transformation: {
-        growth: '220%',
-        efficiency: '85%',
-        reach: 'Regional'
+        growth: '125%',
+        efficiency: '70%',
+        reach: 'Metropolitano'
       }
     },
     {
@@ -127,15 +127,15 @@ export default function Portfolio() {
       businessType: 'Restaurante Familiar',
       description: 'Convertimos un restaurante tradicional en una plataforma de delivery con app móvil y gestión inteligente.',
       before: {
-        sales: '15K/mes',
+        sales: '12K/mes',
         reach: 'Solo presencial',
-        customers: '100 clientes',
+        customers: '80 clientes/mes',
         operations: 'Manual'
       },
       after: {
-        sales: '80K/mes',
+        sales: '35K/mes',
         reach: 'Toda la ciudad',
-        customers: '1000+ clientes',
+        customers: '300+ clientes/mes',
         operations: 'Digital'
       },
       technologies: ['React Native', 'Firebase', 'Node.js', 'MongoDB'],
@@ -152,8 +152,8 @@ export default function Portfolio() {
         'Análisis de ventas en tiempo real'
       ],
       transformation: {
-        growth: '433%',
-        efficiency: '70%',
+        growth: '192%',
+        efficiency: '60%',
         reach: 'Metropolitano'
       }
     }
