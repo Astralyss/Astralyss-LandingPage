@@ -88,16 +88,15 @@ export default function About() {
             <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10"></div>
               <div className="relative z-10 text-center">
-                <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 sm:mb-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
-                  <Star className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
+                <div className="mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                  <Image 
+                    src="/logo/IconAstralyss-withe.svg" 
+                    alt="Logo Astralyss" 
+                    width={200} 
+                    height={200} 
+                    className="w-32 h-32 sm:w-48 sm:h-48"
+                  />
                 </div>
-                <h4 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
-                  Tecnología de Vanguardia
-                </h4>
-                <p className="text-gray-300 text-xs sm:text-sm">
-                  Utilizamos las últimas tecnologías y frameworks para crear experiencias 
-                  digitales excepcionales y de alto rendimiento.
-                </p>
               </div>
             </div>
             

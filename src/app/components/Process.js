@@ -64,7 +64,7 @@ export default function Process() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % processSteps.length);
-    }, 4000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [processSteps.length]);
 

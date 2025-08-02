@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Palette, Shield, Zap, CheckCircle, Smartphone, Zap as Lightning } from 'lucide-react';
 
 export default function Services() {
   const [activeService, setActiveService] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const intervalRef = useRef(null);
 
   const services = [
     {
@@ -52,12 +54,43 @@ export default function Services() {
     }
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const startInterval = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(() => {
       setActiveService((prev) => (prev + 1) % services.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [services.length]);
+    }, 8000);
+  };
+
+  const stopInterval = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    if (!isHovering) {
+      startInterval();
+    } else {
+      stopInterval();
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isHovering, services.length]);
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
 
   return (
     <section id="soluciones" className="py-16 sm:py-20 relative overflow-hidden">
@@ -93,6 +126,10 @@ export default function Services() {
                       : 'hover:shadow-lg hover:shadow-slate-600/20'
                   }`}
                   onClick={() => setActiveService(index)}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onTouchStart={handleMouseEnter}
+                  onTouchEnd={handleMouseLeave}
                 >
                   <div className="flex items-start space-x-3 sm:space-x-4">
                     <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-r ${service.color} flex items-center justify-center flex-shrink-0`}>
