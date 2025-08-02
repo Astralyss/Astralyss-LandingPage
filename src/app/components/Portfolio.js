@@ -36,8 +36,8 @@ export default function Portfolio() {
       ],
       features: [
         'Diseño responsive moderno',
-        'Optimización SEO completa',
         'Formularios de contacto',
+        'Optimización SEO completa',
         'Analytics integrado'
       ],
       transformation: {
@@ -220,30 +220,30 @@ export default function Portfolio() {
         <div className="mb-12 sm:mb-16">
           <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-0">
-                                            {/* Before/After Comparison */}
-               <div className="relative h-48 lg:h-90 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-xl mt-24 sm:rounded-2xl overflow-hidden">
-                 <Image
-                   src={`/images/${activeFilter === 'web' ? 'web-page' : 
-                          activeFilter === 'ecommerce' ? 'e-comerce' :
-                          activeFilter === 'app' ? 'web-app' : 'mobil-app'}.jpg`}
-                   alt="Transformación Digital"
-                   fill
-                   className="object-cover"
-                   priority
-                 />
-               </div>
+              {/* Before/After Comparison */}
+              <div className="relative h-48 lg:h-90 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-xl mt-24 sm:rounded-2xl overflow-hidden">
+                <Image
+                  src={`/images/${activeFilter === 'web' ? 'web-page' : 
+                         activeFilter === 'ecommerce' ? 'e-comerce' :
+                         activeFilter === 'app' ? 'web-app' : 'mobil-app'}.jpg`}
+                  alt="Transformación Digital"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
 
               {/* Case Details */}
               <div className="p-6 sm:p-8">
-                                 <div className="flex items-center justify-between mb-4">
-                   <div>
-                     <h3 className="text-xl sm:text-2xl font-bold text-white">
-                       {filteredCases[activeCase]?.title || 'Cargando...'}
-                     </h3>
-                     <p className="text-blue-400 text-sm font-medium">
-                       {filteredCases[activeCase]?.businessType || ''}
-                     </p>
-                   </div>
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">
+                      {filteredCases[activeCase]?.title || 'Cargando...'}
+                    </h3>
+                    <p className="text-blue-400 text-sm font-medium">
+                      {filteredCases[activeCase]?.businessType || ''}
+                    </p>
+                  </div>
                   <div className="flex items-center space-x-2">
                     <div className="p-2 bg-green-500/20 rounded-lg">
                       <TrendingUp className="w-4 h-4 text-green-400" />
@@ -251,105 +251,108 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                                 <p className="text-gray-300 mb-6 leading-relaxed">
-                   {filteredCases[activeCase]?.description || ''}
-                 </p>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  {filteredCases[activeCase]?.description || ''}
+                </p>
 
-                {/* Before/After Stats */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                {/* Before/After Stats - Rediseñado según la captura */}
+                <div className="grid grid-cols-2 gap-4 mb-8">
                   {/* Before */}
-                  <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
-                    <h4 className="text-red-400 font-semibold text-sm mb-3 flex items-center">
-                      <Target className="w-4 h-4 mr-2" />
+                  <div className="bg-gradient-to-br from-red-600/20 to-red-800/20 border border-red-500/30 rounded-xl p-4">
+                    <h4 className="text-white font-bold text-sm mb-4 flex items-center">
+                      <Target className="w-4 h-4 mr-2 text-white" />
                       ANTES
                     </h4>
                     <div className="space-y-2">
-                                             <div className="flex justify-between text-xs">
-                         <span className="text-gray-300">Ventas:</span>
-                         <span className="text-red-300 font-medium">{filteredCases[activeCase]?.before?.sales || '-'}</span>
-                       </div>
-                       <div className="flex justify-between text-xs">
-                         <span className="text-gray-300">Alcance:</span>
-                         <span className="text-red-300 font-medium">{filteredCases[activeCase]?.before?.reach || '-'}</span>
-                       </div>
-                       <div className="flex justify-between text-xs">
-                         <span className="text-gray-300">Clientes:</span>
-                         <span className="text-red-300 font-medium">{filteredCases[activeCase]?.before?.customers || '-'}</span>
-                       </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-white">Ventas:</span>
+                        <span className="text-white font-medium">{filteredCases[activeCase]?.before?.sales || '-'}</span>
+                      </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-white">Alcance:</span>
+                        <span className="text-white font-medium">{filteredCases[activeCase]?.before?.reach || '-'}</span>
+                      </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-white">Clientes:</span>
+                        <span className="text-white font-medium">{filteredCases[activeCase]?.before?.customers || '-'}</span>
+                      </div>
                     </div>
                   </div>
 
                   {/* After */}
-                  <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
-                    <h4 className="text-green-400 font-semibold text-sm mb-3 flex items-center">
-                      <Rocket className="w-4 h-4 mr-2" />
+                  <div className="bg-gradient-to-br from-teal-600/20 to-teal-800/20 border border-teal-500/30 rounded-xl p-4">
+                    <h4 className="text-white font-bold text-sm mb-4 flex items-center">
+                      <Rocket className="w-4 h-4 mr-2 text-white" />
                       DESPUÉS
                     </h4>
                     <div className="space-y-2">
-                                             <div className="flex justify-between text-xs">
-                         <span className="text-gray-300">Ventas:</span>
-                         <span className="text-green-300 font-medium">{filteredCases[activeCase]?.after?.sales || '-'}</span>
-                       </div>
-                       <div className="flex justify-between text-xs">
-                         <span className="text-gray-300">Alcance:</span>
-                         <span className="text-green-300 font-medium">{filteredCases[activeCase]?.after?.reach || '-'}</span>
-                       </div>
-                       <div className="flex justify-between text-xs">
-                         <span className="text-gray-300">Clientes:</span>
-                         <span className="text-green-300 font-medium">{filteredCases[activeCase]?.after?.customers || '-'}</span>
-                       </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-white">Ventas:</span>
+                        <span className="text-white font-medium">{filteredCases[activeCase]?.after?.sales || '-'}</span>
+                      </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-white">Alcance:</span>
+                        <span className="text-white font-medium">{filteredCases[activeCase]?.after?.reach || '-'}</span>
+                      </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-white">Clientes:</span>
+                        <span className="text-white font-medium">{filteredCases[activeCase]?.after?.customers || '-'}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Business Benefits */}
+                {/* Business Benefits - Rediseñado según la captura */}
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-white mb-3">✨ Lo que lograron</h4>
-                                     <div className="flex flex-wrap gap-2">
-                     {filteredCases[activeCase]?.benefits?.map((benefit) => (
-                       <span
-                         key={benefit}
-                         className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-medium"
-                       >
-                         {benefit}
-                       </span>
-                     )) || []}
-                   </div>
+                  <h4 className="text-white font-bold text-sm mb-4 flex items-center">
+                    <div className="w-4 h-4 bg-orange-400 rounded-sm mr-2"></div>
+                    Lo que lograron
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {filteredCases[activeCase]?.benefits?.map((benefit) => (
+                      <span
+                        key={benefit}
+                        className="px-3 py-1 bg-green-600/20 text-green-400 rounded-full text-xs font-medium border border-green-500/30"
+                      >
+                        {benefit}
+                      </span>
+                    )) || []}
+                  </div>
                 </div>
 
-                {/* Features */}
+                {/* Features - Rediseñado según la captura */}
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-white mb-3">Soluciones implementadas</h4>
-                                     <div className="grid grid-cols-2 gap-2">
-                     {filteredCases[activeCase]?.features?.map((feature, index) => (
-                       <div key={index} className="flex items-center space-x-2">
-                         <Star className="w-3 h-3 text-blue-500 flex-shrink-0" />
-                         <span className="text-xs text-gray-300">{feature}</span>
-                       </div>
-                     )) || []}
-                   </div>
+                  <h4 className="text-white font-bold text-sm mb-4">Soluciones implementadas</h4>
+                  <div className="space-y-2">
+                    {filteredCases[activeCase]?.features?.map((feature, index) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <Star className="w-3 h-3 text-white flex-shrink-0" />
+                        <span className="text-xs text-white">{feature}</span>
+                      </div>
+                    )) || []}
+                  </div>
                 </div>
 
                 {/* Transformation Stats */}
                 <div className="grid grid-cols-3 gap-4">
-                                     <div className="text-center">
-                     <div className="text-lg font-bold text-green-400 mb-1">
-                       {filteredCases[activeCase]?.transformation?.growth || '-'}
-                     </div>
-                     <div className="text-xs text-gray-400">Crecimiento</div>
-                   </div>
-                   <div className="text-center">
-                     <div className="text-lg font-bold text-blue-400 mb-1">
-                       {filteredCases[activeCase]?.transformation?.efficiency || '-'}
-                     </div>
-                     <div className="text-xs text-gray-400">Eficiencia</div>
-                   </div>
-                   <div className="text-center">
-                     <div className="text-lg font-bold text-purple-400 mb-1">
-                       {filteredCases[activeCase]?.transformation?.reach || '-'}
-                     </div>
-                     <div className="text-xs text-gray-400">Alcance</div>
-                   </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-green-400 mb-1">
+                      {filteredCases[activeCase]?.transformation?.growth || '-'}
+                    </div>
+                    <div className="text-xs text-gray-400">Crecimiento</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-blue-400 mb-1">
+                      {filteredCases[activeCase]?.transformation?.efficiency || '-'}
+                    </div>
+                    <div className="text-xs text-gray-400">Eficiencia</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-purple-400 mb-1">
+                      {filteredCases[activeCase]?.transformation?.reach || '-'}
+                    </div>
+                    <div className="text-xs text-gray-400">Alcance</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -367,12 +370,12 @@ export default function Portfolio() {
               {/* Case Icon */}
               <div className="relative h-40 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg mb-4 flex items-center justify-center">
                 <div className="text-center">
-                                     <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                     {case_.category === 'ecommerce' && <ShoppingCart className="w-6 h-6 text-white" />}
-                     {case_.category === 'mobile' && <Smartphone className="w-6 h-6 text-white" />}
-                     {case_.category === 'app' && <BarChart3 className="w-6 h-6 text-white" />}
-                     {case_.category === 'web' && <Globe className="w-6 h-6 text-white" />}
-                   </div>
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                    {case_.category === 'ecommerce' && <ShoppingCart className="w-6 h-6 text-white" />}
+                    {case_.category === 'mobile' && <Smartphone className="w-6 h-6 text-white" />}
+                    {case_.category === 'app' && <BarChart3 className="w-6 h-6 text-white" />}
+                    {case_.category === 'web' && <Globe className="w-6 h-6 text-white" />}
+                  </div>
                   <p className="text-gray-300 text-xs">{case_.businessType}</p>
                 </div>
               </div>
