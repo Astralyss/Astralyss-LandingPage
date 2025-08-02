@@ -15,14 +15,14 @@ export default function Technologies() {
       icon: Globe,
       color: 'from-blue-500 to-cyan-500',
       technologies: [
-        { name: 'React', icon: '/svg/react.svg', level: 'Avanzado' },
-        { name: 'Next.js', icon: '/svg/next.svg', level: 'Avanzado' },
-        { name: 'Vue.js', icon: '/svg/vue.svg', level: 'Avanzado' },
-        { name: 'TypeScript', icon: '/svg/typeScript.svg', level: 'Avanzado' },
-        { name: 'Tailwind CSS', icon: '/svg/tailwindcss.svg', level: 'Avanzado' },
-        { name: 'HTML5', icon: '/svg/HTML5.svg', level: 'Experto' },
-        { name: 'CSS3', icon: '/svg/CSS3.svg', level: 'Experto' },
-        { name: 'JavaScript', icon: '/svg/javaScript.svg', level: 'Experto' }
+        { name: 'React', icon: '/svg/react.svg' },
+        { name: 'Next.js', icon: '/svg/next.svg' },
+        { name: 'Vue.js', icon: '/svg/vue.svg' },
+        { name: 'TypeScript', icon: '/svg/typeScript.svg' },
+        { name: 'Tailwind CSS', icon: '/svg/tailwindcss.svg' },
+        { name: 'HTML5', icon: '/svg/HTML5.svg' },
+        { name: 'CSS3', icon: '/svg/CSS3.svg' },
+        { name: 'JavaScript', icon: '/svg/javaScript.svg' }
       ]
     },
     {
@@ -32,11 +32,12 @@ export default function Technologies() {
       icon: Database,
       color: 'from-green-500 to-emerald-500',
       technologies: [
-        { name: 'Node.js', icon: '/svg/nodejs.svg', level: 'Avanzado' },
-        { name: 'Supabase', icon: '/svg/supabase.svg', level: 'Avanzado' },
-        { name: 'MySQL', icon: '/svg/mysql.svg', level: 'Avanzado' },
-        { name: 'REST APIs', icon: '/svg/api.svg', level: 'Experto' },
-        { name: 'GraphQL', icon: '/svg/graphql.svg', level: 'Intermedio' }
+        { name: 'Node.js', icon: '/svg/nodejs.svg' },
+        { name: 'Supabase', icon: '/svg/supabase.svg' },
+        { name: 'MySQL', icon: '/svg/mysql1.svg' },
+        { name: 'PostgreSQL', icon: '/svg/postgresql.svg' },
+        { name: 'REST APIs', icon: '/svg/api.svg' },
+        { name: 'GraphQL', icon: '/svg/graphql.svg' }
       ]
     },
     {
@@ -46,11 +47,11 @@ export default function Technologies() {
       icon: Zap,
       color: 'from-purple-500 to-pink-500',
       technologies: [
-        { name: 'Git', icon: '/svg/git.svg', level: 'Avanzado' },
-        { name: 'Bash', icon: '/svg/bash.svg', level: 'Intermedio' },
-        { name: 'Vercel', icon: '/svg/vercel.svg', level: 'Avanzado' },
-        { name: 'Docker', icon: '/svg/docker.svg', level: 'Intermedio' },
-        { name: 'CI/CD', icon: '/svg/cicd.svg', level: 'Intermedio' }
+        { name: 'Git', icon: '/svg/git.svg' },
+        { name: 'Bash', icon: '/svg/bash.svg' },
+        { name: 'Vercel', icon: '/svg/vercel.svg' },
+        { name: 'Docker', icon: '/svg/docker1.svg' },
+        { name: 'GitHub', icon: '/svg/github.svg' }
       ]
     }
   ];
@@ -61,15 +62,6 @@ export default function Technologies() {
     }, 6000);
     return () => clearInterval(interval);
   }, [categories.length]);
-
-  const getLevelColor = (level) => {
-    switch (level) {
-      case 'Experto': return 'text-green-400';
-      case 'Avanzado': return 'text-blue-400';
-      case 'Intermedio': return 'text-yellow-400';
-      default: return 'text-gray-400';
-    }
-  };
 
   return (
     <section id="tecnologias" className="py-16 sm:py-20 relative overflow-hidden">
@@ -140,7 +132,7 @@ export default function Technologies() {
                     className="bg-slate-700/30 rounded-lg p-4 hover:bg-slate-600/30 transition-all duration-300 group"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className="flex items-center space-x-3 mb-2">
+                    <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 bg-slate-600/50 rounded-lg flex items-center justify-center">
                         <Image
                           src={tech.icon}
@@ -152,9 +144,6 @@ export default function Technologies() {
                       </div>
                       <span className="text-sm font-medium text-white">{tech.name}</span>
                     </div>
-                    <span className={`text-xs ${getLevelColor(tech.level)}`}>
-                      {tech.level}
-                    </span>
                   </div>
                 ))}
               </div>
