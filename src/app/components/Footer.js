@@ -2,35 +2,69 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Facebook, Instagram, MessageCircle, ChevronUp } from 'lucide-react';
+import { Facebook, Instagram, ChevronUp, Mail, Phone, MapPin } from 'lucide-react';
+import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const handleServiceClick = (category) => {
+    // Navegar al portafolio
+    const portfolioSection = document.getElementById('portafolio');
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Esperar un poco para que la navegación termine y luego activar el filtro
+      setTimeout(() => {
+        // Disparar un evento personalizado para activar el filtro
+        const filterEvent = new CustomEvent('activatePortfolioFilter', {
+          detail: { category }
+        });
+        window.dispatchEvent(filterEvent);
+      }, 500);
+    }
+  };
+
   const footerLinks = {
     navegacion: [
       { name: 'Inicio', href: '#inicio' },
-      { name: 'Soluciones', href: '#soluciones' },
+      { name: 'Servicios', href: '#servicios' },
       { name: 'Acerca de Nosotros', href: '#nosotros' },
       { name: 'Contacto', href: '#contacto' }
     ],
     servicios: [
-      { name: 'Diseño Web', href: '#soluciones' },
-      { name: 'Desarrollo Web', href: '#soluciones' },
-      { name: 'Optimización SEO', href: '#soluciones' },
-      { name: 'Consultoría Digital', href: '#soluciones' }
+      { name: 'Desarrollo Web', href: '#portafolio', category: 'web' },
+      { name: 'E-commerce', href: '#portafolio', category: 'ecommerce' },
+      { name: 'Aplicaciones Web', href: '#portafolio', category: 'app' },
+      { name: 'Aplicaciones Móviles', href: '#portafolio', category: 'mobile' }
     ],
     contacto: [
-      { name: '+52 55 6419 8670', href: 'tel:+525564198670' },
-      { name: 'info@astralyss.com', href: 'mailto:info@astralyss.com' },
-      { name: 'www.astralyss.com', href: 'https://www.astralyss.com' }
+      { 
+        name: '+52 55 6419 8670', 
+        href: 'https://wa.me/525564198670?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios', 
+        icon: FaWhatsapp,
+        type: 'whatsapp'
+      },
+      { 
+        name: 'info@astralyss.com', 
+        href: 'mailto:info@astralyss.com?subject=Consulta%20sobre%20servicios&body=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20de%20desarrollo%20web.', 
+        icon: Mail,
+        type: 'email'
+      },
+      { 
+        name: 'Ciudad de México, CDMX', 
+        href: 'https://maps.google.com/?q=Ciudad+de+México,+CDMX', 
+        icon: MapPin,
+        type: 'location'
+      }
     ]
   };
 
   const socialLinks = [
     { name: 'Facebook', icon: Facebook, href: '#' },
     { name: 'Instagram', icon: Instagram, href: '#' },
-    { name: 'TikTok', icon: MessageCircle, href: '#' }
+    { name: 'WhatsApp', icon: FaWhatsapp, href: 'https://wa.me/525564198670?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios' },
+    { name: 'TikTok', icon: FaTiktok, href: '#' }
   ];
 
   return (
@@ -67,6 +101,8 @@ export default function Footer() {
                   <a
                     key={index}
                     href={social.href}
+                    target={social.name === 'WhatsApp' || social.name === 'TikTok' ? '_blank' : '_self'}
+                    rel={social.name === 'WhatsApp' || social.name === 'TikTok' ? 'noopener noreferrer' : ''}
                     className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-800/30 backdrop-blur-sm rounded-lg flex items-center justify-center hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300"
                     aria-label={social.name}
                   >
@@ -100,12 +136,12 @@ export default function Footer() {
             <ul className="space-y-1 sm:space-y-2">
               {footerLinks.servicios.map((service, index) => (
                 <li key={index}>
-                  <Link
-                    href={service.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
+                  <button
+                    onClick={() => handleServiceClick(service.category)}
+                    className="text-left text-gray-300 hover:text-white transition-colors duration-200 text-xs sm:text-sm w-full"
                   >
                     {service.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -114,17 +150,23 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-sm sm:text-base font-semibold text-white mb-2 sm:mb-3">Contacto</h3>
-            <ul className="space-y-1 sm:space-y-2">
-              {footerLinks.contacto.map((contact, index) => (
-                <li key={index}>
-                  <a
-                    href={contact.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
-                  >
-                    {contact.name}
-                  </a>
-                </li>
-              ))}
+            <ul className="space-y-2 sm:space-y-3">
+              {footerLinks.contacto.map((contact, index) => {
+                const IconComponent = contact.icon;
+                return (
+                  <li key={index}>
+                    <a
+                      href={contact.href}
+                      target={contact.type === 'whatsapp' || contact.type === 'location' ? '_blank' : '_self'}
+                      rel={contact.type === 'whatsapp' || contact.type === 'location' ? 'noopener noreferrer' : ''}
+                      className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 text-xs sm:text-sm group"
+                    >
+                      <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+                      <span className="truncate">{contact.name}</span>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

@@ -9,6 +9,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [activeSubmenu, setActiveSubmenu] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,12 +30,55 @@ export default function Navbar() {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
+  // Cerrar submenú cuando se hace clic fuera
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (activeSubmenu && !event.target.closest('.group')) {
+        setActiveSubmenu(null);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [activeSubmenu]);
+
   const navItems = [
     { name: 'Inicio', href: '#inicio', icon: Home },
-    { name: 'Soluciones', href: '#soluciones', icon: Settings },
+    { 
+      name: 'Servicios', 
+      href: '#servicios', 
+      icon: Settings,
+      submenu: [
+        { name: 'Desarrollo Web', href: '#portafolio', category: 'web' },
+        { name: 'E-commerce', href: '#portafolio', category: 'ecommerce' },
+        { name: 'Aplicaciones Web', href: '#portafolio', category: 'app' },
+        { name: 'Aplicaciones Móviles', href: '#portafolio', category: 'mobile' }
+      ]
+    },
     { name: 'Nosotros', href: '#nosotros', icon: Users },
     { name: 'Reseñas', href: '#reseñas', icon: Star },
   ];
+
+  const handleServiceClick = (category) => {
+    // Cerrar el submenú
+    setActiveSubmenu(null);
+    setIsMobileMenuOpen(false);
+    
+    // Navegar al portafolio
+    const portfolioSection = document.getElementById('portafolio');
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Esperar un poco para que la navegación termine y luego activar el filtro
+      setTimeout(() => {
+        // Disparar un evento personalizado para activar el filtro
+        const filterEvent = new CustomEvent('activatePortfolioFilter', {
+          detail: { category }
+        });
+        window.dispatchEvent(filterEvent);
+      }, 500);
+    }
+  };
 
   return (
     <nav
@@ -65,15 +109,44 @@ export default function Navbar() {
             {navItems.map((item) => {
               const IconComponent = item.icon;
               return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center space-x-2 text-gray-300 hover:text-white transition-all duration-300 font-medium relative group"
-                >
-                  <IconComponent className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
-                  <span className="text-sm">{item.name}</span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
-                </Link>
+                <div key={item.name} className="relative group">
+                  {item.submenu ? (
+                    <button
+                      onClick={() => setActiveSubmenu(activeSubmenu === item.name ? null : item.name)}
+                      className="flex items-center space-x-2 text-gray-300 hover:text-white transition-all duration-300 font-medium relative"
+                    >
+                      <IconComponent className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+                      <span className="text-sm">{item.name}</span>
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="flex items-center space-x-2 text-gray-300 hover:text-white transition-all duration-300 font-medium relative group"
+                    >
+                      <IconComponent className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+                      <span className="text-sm">{item.name}</span>
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+                    </Link>
+                  )}
+                  
+                                     {/* Submenu */}
+                   {item.submenu && activeSubmenu === item.name && (
+                     <div className="absolute top-full left-0 mt-2 w-64 bg-slate-800/90 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-700/50 z-50">
+                       <div className="p-2">
+                         {item.submenu.map((subItem) => (
+                           <button
+                             key={subItem.name}
+                             onClick={() => handleServiceClick(subItem.category)}
+                             className="w-full text-left flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-all duration-300 text-sm"
+                           >
+                             <span>{subItem.name}</span>
+                           </button>
+                         ))}
+                       </div>
+                     </div>
+                   )}
+                </div>
               );
             })}
             <Link
@@ -90,14 +163,42 @@ export default function Navbar() {
             {navItems.slice(0, 2).map((item) => {
               const IconComponent = item.icon;
               return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center space-x-1 text-gray-300 hover:text-white transition-all duration-300 font-medium"
-                >
-                  <IconComponent className="w-4 h-4" />
-                  <span className="text-sm">{item.name}</span>
-                </Link>
+                <div key={item.name} className="relative group">
+                  {item.submenu ? (
+                    <button
+                      onClick={() => setActiveSubmenu(activeSubmenu === item.name ? null : item.name)}
+                      className="flex items-center space-x-1 text-gray-300 hover:text-white transition-all duration-300 font-medium"
+                    >
+                      <IconComponent className="w-4 h-4" />
+                      <span className="text-sm">{item.name}</span>
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="flex items-center space-x-1 text-gray-300 hover:text-white transition-all duration-300 font-medium"
+                    >
+                      <IconComponent className="w-4 h-4" />
+                      <span className="text-sm">{item.name}</span>
+                    </Link>
+                  )}
+                  
+                                     {/* Submenu for tablet */}
+                   {item.submenu && activeSubmenu === item.name && (
+                     <div className="absolute top-full left-0 mt-2 w-48 bg-slate-800/90 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-700/50 z-50">
+                       <div className="p-2">
+                         {item.submenu.map((subItem) => (
+                           <button
+                             key={subItem.name}
+                             onClick={() => handleServiceClick(subItem.category)}
+                             className="w-full text-left flex items-center space-x-2 px-3 py-2 text-gray-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-all duration-300 text-xs"
+                           >
+                             <span>{subItem.name}</span>
+                           </button>
+                         ))}
+                       </div>
+                     </div>
+                   )}
+                </div>
               );
             })}
             <Link
@@ -128,15 +229,45 @@ export default function Navbar() {
               {navItems.map((item) => {
                 const IconComponent = item.icon;
                 return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 font-medium py-3 px-4 rounded-lg hover:bg-slate-800/50"
-                  >
-                    <IconComponent className="w-5 h-5" />
-                    <span className="text-sm">{item.name}</span>
-                  </Link>
+                  <div key={item.name}>
+                    {item.submenu ? (
+                      <div>
+                        <button
+                          onClick={() => setActiveSubmenu(activeSubmenu === item.name ? null : item.name)}
+                          className="flex items-center justify-between w-full text-gray-300 hover:text-white transition-all duration-300 font-medium py-3 px-4 rounded-lg hover:bg-slate-800/50"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <IconComponent className="w-5 h-5" />
+                            <span className="text-sm">{item.name}</span>
+                          </div>
+                          <span className="text-xs">▼</span>
+                        </button>
+                                                 {activeSubmenu === item.name && (
+                           <div className="ml-8 mt-2 space-y-2">
+                             {item.submenu.map((subItem) => (
+                               <button
+                                 key={subItem.name}
+                                 onClick={() => handleServiceClick(subItem.category)}
+                                 className="w-full text-left flex items-center space-x-3 text-gray-400 hover:text-white transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-slate-800/50 text-sm"
+                               >
+                                 <span>•</span>
+                                 <span>{subItem.name}</span>
+                               </button>
+                             ))}
+                           </div>
+                         )}
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 font-medium py-3 px-4 rounded-lg hover:bg-slate-800/50"
+                      >
+                        <IconComponent className="w-5 h-5" />
+                        <span className="text-sm">{item.name}</span>
+                      </Link>
+                    )}
+                  </div>
                 );
               })}
               <div className="pt-2">

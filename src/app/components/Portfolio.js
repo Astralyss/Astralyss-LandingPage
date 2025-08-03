@@ -160,10 +160,10 @@ export default function Portfolio() {
   ];
 
   const filters = [
-    { id: 'web', label: 'Páginas Web' },
-    { id: 'ecommerce', label: 'E-commerce' },
-    { id: 'app', label: 'Aplicaciones Web' },
-    { id: 'mobile', label: 'Apps Móviles' }
+    { id: 'web', label: 'Páginas Web', icon: Globe },
+    { id: 'ecommerce', label: 'E-commerce', icon: ShoppingCart },
+    { id: 'app', label: 'Aplicaciones Web', icon: BarChart3 },
+    { id: 'mobile', label: 'Apps Móviles', icon: Smartphone }
   ];
 
   const filteredCases = transformationCases.filter(case_ => case_.category === activeFilter);
@@ -172,6 +172,18 @@ export default function Portfolio() {
   useEffect(() => {
     setActiveCase(0);
   }, [activeFilter]);
+
+  // Escuchar eventos para activar filtros desde el navbar
+  useEffect(() => {
+    const handleFilterActivation = (event) => {
+      const { category } = event.detail;
+      setActiveFilter(category);
+      setActiveCase(0);
+    };
+
+    window.addEventListener('activatePortfolioFilter', handleFilterActivation);
+    return () => window.removeEventListener('activatePortfolioFilter', handleFilterActivation);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -201,19 +213,35 @@ export default function Portfolio() {
 
                  {/* Filters */}
          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-2">
-           {filters.map((filter) => (
-             <button
-               key={filter.id}
-               onClick={() => setActiveFilter(filter.id)}
-               className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                 activeFilter === filter.id
-                   ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
-                   : 'bg-slate-800/30 text-gray-300 hover:bg-slate-700/30'
-               }`}
-             >
-               {filter.label}
-             </button>
-           ))}
+           {filters.map((filter) => {
+             const IconComponent = filter.icon;
+             return (
+               <button
+                 key={filter.id}
+                 onClick={() => setActiveFilter(filter.id)}
+                 className={`relative px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ease-out flex items-center gap-2 ${
+                   activeFilter === filter.id
+                     ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25'
+                     : 'bg-transparent text-gray-300 hover:text-white border border-slate-600/30 hover:border-slate-500/50'
+                 }`}
+               >
+                 {/* Icon */}
+                 <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                 
+                 {/* Button content */}
+                 <span className="relative z-10">
+                   {filter.label}
+                 </span>
+                 
+                 {/* Subtle hover effect */}
+                 <div className={`absolute inset-0 rounded-full transition-all duration-300 ${
+                   activeFilter === filter.id
+                     ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20'
+                     : 'bg-gradient-to-r from-blue-500/0 to-cyan-500/0 hover:from-blue-500/5 hover:to-cyan-500/5'
+                 }`}></div>
+               </button>
+             );
+           })}
          </div>
 
                  {/* Featured Transformation Case */}

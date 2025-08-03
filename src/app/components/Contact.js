@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, Mail, Globe, Send, CheckCircle, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import { Phone, Mail, Globe, Send, CheckCircle, Facebook, Instagram } from 'lucide-react';
+import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -59,7 +60,8 @@ export default function Contact() {
   const socialLinks = [
     { name: 'Facebook', icon: Facebook, href: '#' },
     { name: 'Instagram', icon: Instagram, href: '#' },
-    { name: 'TikTok', icon: MessageCircle, href: '#' }
+    { name: 'WhatsApp', icon: FaWhatsapp, href: 'https://wa.me/525564198670?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios' },
+    { name: 'TikTok', icon: FaTiktok, href: '#' }
   ];
 
   return (
@@ -201,7 +203,10 @@ export default function Contact() {
                     <a
                       key={index}
                       href={social.href}
+                      target={social.name === 'WhatsApp' || social.name === 'TikTok' ? '_blank' : '_self'}
+                      rel={social.name === 'WhatsApp' || social.name === 'TikTok' ? 'noopener noreferrer' : ''}
                       className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-800/30 backdrop-blur-sm rounded-lg flex items-center justify-center hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300"
+                      aria-label={social.name}
                     >
                       <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 hover:text-white transition-colors duration-300" />
                     </a>
