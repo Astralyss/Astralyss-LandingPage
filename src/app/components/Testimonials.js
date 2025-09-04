@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Quote, Star, Users, Award, CheckCircle, ArrowRight } from 'lucide-react';
 
 export default function Testimonials() {
@@ -149,10 +150,13 @@ export default function Testimonials() {
             <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
               ¿Listo para transformar tu presencia digital?
             </p>
-            <button className="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 mx-auto">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center space-x-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+            >
               <span>Comienza tu Proyecto</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

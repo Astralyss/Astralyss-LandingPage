@@ -117,14 +117,22 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-4">
-            <button className="w-full sm:w-auto flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
+            <a 
+              href="/contact" 
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+            >
               <span>Comienza tu Proyecto</span>
               <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            </button>
-            <button className="w-full sm:w-auto flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-slate-800/30 backdrop-blur-sm text-white rounded-full font-semibold text-sm sm:text-base hover:bg-slate-700/30 transition-all duration-300 border border-slate-600/30 hover:border-blue-500/50">
+            </a>
+            <a 
+              href="https://www.tiktok.com/@astralyss" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-slate-800/30 backdrop-blur-sm text-white rounded-full font-semibold text-sm sm:text-base hover:bg-slate-700/30 transition-all duration-300 border border-slate-600/30 hover:border-blue-500/50"
+            >
               <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Ver Nuestro Trabajo</span>
-            </button>
+            </a>
           </div>
 
           {/* Statistics Section - Responsive mejorado */}

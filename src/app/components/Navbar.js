@@ -150,7 +150,7 @@ export default function Navbar() {
               );
             })}
             <Link
-              href="#contacto"
+              href="/contact"
               className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
             >
               <MessageCircle className="w-4 h-4" />
@@ -202,7 +202,7 @@ export default function Navbar() {
               );
             })}
             <Link
-              href="#contacto"
+              href="/contact"
               className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium text-sm hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
             >
               Contacto

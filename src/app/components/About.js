@@ -77,9 +77,14 @@ export default function About() {
             
             {/* CTA Button */}
             <div className="pt-4 sm:pt-6">
-              <button className="px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
+              <a 
+                href="https://www.tiktok.com/@astralyss" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 inline-block"
+              >
                 Conoce Nuestro Trabajo
-              </button>
+              </a>
             </div>
           </div>
 

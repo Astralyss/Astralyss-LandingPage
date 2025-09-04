@@ -53,7 +53,7 @@ export default function Footer() {
       },
       { 
         name: 'Ciudad de México, CDMX', 
-        href: 'https://maps.google.com/?q=Ciudad+de+México,+CDMX', 
+        href: '#', 
         icon: MapPin,
         type: 'location'
       }
@@ -61,10 +61,10 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: '#' },
-    { name: 'Instagram', icon: Instagram, href: '#' },
+    { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61574954128266' },
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/astralyss.web/' },
     { name: 'WhatsApp', icon: FaWhatsapp, href: 'https://wa.me/525564198670?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios' },
-    { name: 'TikTok', icon: FaTiktok, href: '#' }
+    { name: 'TikTok', icon: FaTiktok, href: 'https://www.tiktok.com/@astralyss' }
   ];
 
   return (

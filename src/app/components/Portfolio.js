@@ -469,10 +469,13 @@ export default function Portfolio() {
              <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
                Lleva tu empresa al siguiente nivel con soluciones tecnológicas que escalan tu crecimiento
              </p>
-             <button className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 flex items-center mx-auto text-sm sm:text-base">
+             <a 
+               href="/contact" 
+               className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 inline-flex items-center text-sm sm:text-base"
+             >
                Transformar mi Negocio
                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2" />
-             </button>
+             </a>
            </div>
          </div>
       </div>
