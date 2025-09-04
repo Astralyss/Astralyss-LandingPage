@@ -90,10 +90,10 @@ export default function About() {
 
           {/* Image/Visual */}
           <div className="relative order-first lg:order-last">
-            <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10"></div>
-              <div className="relative z-10 text-center">
-                <div className="mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+            <div className="bg-slate-800/30 backdrop-blur-sm rounded-full p-6 sm:p-8 relative overflow-hidden w-48 h-48 sm:w-64 sm:h-64 mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full"></div>
+              <div className="relative z-10 text-center h-full flex items-center justify-center">
+                <div className="flex items-center justify-center">
                   <Image 
                     src="/logo/IconAstralyss-withe.svg" 
                     alt="Logo Astralyss" 

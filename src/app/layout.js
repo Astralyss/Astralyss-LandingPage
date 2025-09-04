@@ -15,12 +15,20 @@ const openSans = Open_Sans({
 });
 
 export const metadata = {
-  title: "Astralyss - Transforma Tu Negocio con Tecnología de Vanguardia",
+  title: "Astralyss",
   description: "Impulsamos el crecimiento de tu marca con innovación, calidad y tecnología de vanguardia. Diseño moderno, desarrollo web optimizado y soluciones digitales de alto impacto.",
   keywords: "desarrollo web, diseño web, tecnología, innovación, marketing digital, SEO, Next.js, React, TypeScript",
   authors: [{ name: "Astralyss" }],
   creator: "Astralyss",
   publisher: "Astralyss",
+  icons: {
+    icon: [
+      { url: '/iconAstralyss.ico' },
+      { url: '/logo/IconAstralyss-withe.svg', type: 'image/svg+xml' }
+    ],
+    apple: '/iconAstralyss.ico',
+    shortcut: '/iconAstralyss.ico'
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -73,7 +81,9 @@ export default function RootLayout({ children }) {
     <html lang="es" className="scroll-smooth">
       <head>
         <link rel="icon" href="/iconAstralyss.ico" />
+        <link rel="icon" type="image/svg+xml" href="/logo/IconAstralyss-withe.svg" />
         <link rel="apple-touch-icon" href="/iconAstralyss.ico" />
+        <link rel="shortcut icon" href="/iconAstralyss.ico" />
         <meta name="theme-color" content="#0f172a" />
         <meta name="msapplication-TileColor" content="#0f172a" />
         <JsonLd />
