@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Home, Settings, Users, Star, MessageCircle } from 'lucide-react';
 
 export default function Navbar() {
@@ -10,6 +11,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,19 +66,40 @@ export default function Navbar() {
     setActiveSubmenu(null);
     setIsMobileMenuOpen(false);
     
-    // Navegar al portafolio
-    const portfolioSection = document.getElementById('portafolio');
-    if (portfolioSection) {
-      portfolioSection.scrollIntoView({ behavior: 'smooth' });
-      
-      // Esperar un poco para que la navegación termine y luego activar el filtro
-      setTimeout(() => {
-        // Disparar un evento personalizado para activar el filtro
-        const filterEvent = new CustomEvent('activatePortfolioFilter', {
-          detail: { category }
-        });
-        window.dispatchEvent(filterEvent);
-      }, 500);
+    // Si estamos en la página principal, navegar directamente a la sección
+    if (pathname === '/') {
+      const portfolioSection = document.getElementById('portafolio');
+      if (portfolioSection) {
+        portfolioSection.scrollIntoView({ behavior: 'smooth' });
+        
+        // Esperar un poco para que la navegación termine y luego activar el filtro
+        setTimeout(() => {
+          // Disparar un evento personalizado para activar el filtro
+          const filterEvent = new CustomEvent('activatePortfolioFilter', {
+            detail: { category }
+          });
+          window.dispatchEvent(filterEvent);
+        }, 500);
+      }
+    } else {
+      // Si estamos en otra página, redirigir a la página principal con la sección
+      window.location.href = `/#portafolio`;
+    }
+  };
+
+  const handleNavClick = (href) => {
+    // Cerrar el menú móvil si está abierto
+    setIsMobileMenuOpen(false);
+    
+    // Si estamos en la página principal, navegar directamente a la sección
+    if (pathname === '/') {
+      const section = document.getElementById(href.replace('#', ''));
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Si estamos en otra página, redirigir a la página principal con la sección
+      window.location.href = `/${href}`;
     }
   };
 
@@ -120,14 +143,14 @@ export default function Navbar() {
                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
                     </button>
                   ) : (
-                    <Link
-                      href={item.href}
+                    <button
+                      onClick={() => handleNavClick(item.href)}
                       className="flex items-center space-x-2 text-gray-300 hover:text-white transition-all duration-300 font-medium relative group"
                     >
                       <IconComponent className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
                       <span className="text-sm">{item.name}</span>
                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
-                    </Link>
+                    </button>
                   )}
                   
                                      {/* Submenu */}
@@ -173,13 +196,13 @@ export default function Navbar() {
                       <span className="text-sm">{item.name}</span>
                     </button>
                   ) : (
-                    <Link
-                      href={item.href}
+                    <button
+                      onClick={() => handleNavClick(item.href)}
                       className="flex items-center space-x-1 text-gray-300 hover:text-white transition-all duration-300 font-medium"
                     >
                       <IconComponent className="w-4 h-4" />
                       <span className="text-sm">{item.name}</span>
-                    </Link>
+                    </button>
                   )}
                   
                                      {/* Submenu for tablet */}
@@ -258,23 +281,25 @@ export default function Navbar() {
                          )}
                       </div>
                     ) : (
-                      <Link
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 font-medium py-3 px-4 rounded-lg hover:bg-slate-800/50"
+                      <button
+                        onClick={() => {
+                          handleNavClick(item.href);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 font-medium py-3 px-4 rounded-lg hover:bg-slate-800/50 w-full text-left"
                       >
                         <IconComponent className="w-5 h-5" />
                         <span className="text-sm">{item.name}</span>
-                      </Link>
+                      </button>
                     )}
                   </div>
                 );
               })}
               <div className="pt-2">
                 <Link
-                  href="#contacto"
+                  href="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+                  className="flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 w-full"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span className="text-sm">Contáctanos</span>
