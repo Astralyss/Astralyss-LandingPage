@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, Mail, Globe, Send, CheckCircle, Facebook, Instagram } from 'lucide-react';
+import { Phone, Mail, Globe, Send, CheckCircle, Facebook, Instagram, ArrowRight } from 'lucide-react';
 import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
 
 export default function Contact() {
@@ -82,6 +82,15 @@ export default function Contact() {
             ¿Listo para transformar tu negocio? Estamos aquí para ayudarte a crear 
             la presencia digital que tu empresa merece.
           </p>
+          <div className="mt-6">
+            <a
+              href="/contact"
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+            >
+              <span>Obtener Propuesta Personalizada</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
