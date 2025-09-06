@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, Mail, Globe, Send, CheckCircle, Facebook, Instagram, ArrowRight, Target, DollarSign, Calendar, Users, Zap, TrendingUp, ShoppingCart, Briefcase, Camera, Palette, Code, BarChart3, Store, Utensils, Heart, BookOpen, Paintbrush } from 'lucide-react';
+import { Phone, Mail, Globe, Send, CheckCircle, Facebook, Instagram, ArrowRight, Target, DollarSign, Calendar, Users, Zap, TrendingUp, ShoppingCart, Briefcase, Camera, Palette, Code, BarChart3, Store, Utensils, Heart, BookOpen, Paintbrush, Home } from 'lucide-react';
 import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Link from 'next/link';
 
 export default function ContactPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -36,6 +37,7 @@ export default function ContactPage() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const projectTypes = [
     { value: 'website', label: 'Sitio Web Corporativo', icon: Globe, description: 'Presencia profesional en línea' },
@@ -86,10 +88,115 @@ export default function ContactPage() {
       ...formData,
       [e.target.name]: e.target.value
     });
+    
+    // Limpiar error cuando el usuario empiece a escribir
+    if (errors[e.target.name]) {
+      setErrors({
+        ...errors,
+        [e.target.name]: ''
+      });
+    }
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    // Acepta formatos como: +52 55 1234 5678, 5551234567, (555) 123-4567
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+  };
+
+  const validateURL = (url) => {
+    if (!url) return true; // URL es opcional
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const validateStep = (step) => {
+    const newErrors = {};
+    
+    switch (step) {
+      case 1:
+        if (!formData.name) {
+          newErrors.name = 'Este campo es requerido';
+        } else if (formData.name.trim().length < 2) {
+          newErrors.name = 'El nombre debe tener al menos 2 caracteres';
+        }
+        
+        if (!formData.email) {
+          newErrors.email = 'Este campo es requerido';
+        } else if (!validateEmail(formData.email)) {
+          newErrors.email = 'Por favor ingresa un email válido';
+        }
+        
+        if (!formData.phone) {
+          newErrors.phone = 'Este campo es requerido';
+        } else if (!validatePhone(formData.phone)) {
+          newErrors.phone = 'Por favor ingresa un teléfono válido (ej: +52 55 1234 5678)';
+        }
+        
+        if (!formData.company) {
+          newErrors.company = 'Este campo es requerido';
+        } else if (formData.company.trim().length < 2) {
+          newErrors.company = 'El nombre de la empresa debe tener al menos 2 caracteres';
+        }
+        break;
+        
+      case 2:
+        if (!formData.projectType) newErrors.projectType = 'Este campo es requerido';
+        if (!formData.businessType) newErrors.businessType = 'Este campo es requerido';
+        if (formData.businessType === 'other' && !formData.otherBusinessType) {
+          newErrors.otherBusinessType = 'Este campo es requerido';
+        } else if (formData.businessType === 'other' && formData.otherBusinessType.trim().length < 2) {
+          newErrors.otherBusinessType = 'Especifica al menos 2 caracteres';
+        }
+        break;
+        
+      case 3:
+        if (!formData.budget) newErrors.budget = 'Este campo es requerido';
+        if (!formData.timeline) newErrors.timeline = 'Este campo es requerido';
+        
+        // Validar URL del sitio web actual si se proporciona
+        if (formData.currentWebsite && !validateURL(formData.currentWebsite)) {
+          newErrors.currentWebsite = 'Por favor ingresa una URL válida (ej: https://tusitio.com)';
+        }
+        break;
+        
+      case 4:
+        if (!formData.mainGoal) newErrors.mainGoal = 'Este campo es requerido';
+        
+        if (!formData.targetAudience) {
+          newErrors.targetAudience = 'Este campo es requerido';
+        } else if (formData.targetAudience.trim().length < 5) {
+          newErrors.targetAudience = 'Describe tu público objetivo con al menos 5 caracteres';
+        }
+        
+        if (!formData.message) {
+          newErrors.message = 'Este campo es requerido';
+        } else if (formData.message.trim().length < 10) {
+          newErrors.message = 'Cuéntanos más sobre tu proyecto (mínimo 10 caracteres)';
+        }
+        break;
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleNext = (e) => {
     e.preventDefault();
+    
+    if (!validateStep(currentStep)) {
+      return;
+    }
+    
     if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
     }
@@ -104,6 +211,11 @@ export default function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!validateStep(4)) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // Simular envío del formulario
@@ -114,6 +226,9 @@ export default function ContactPage() {
     
     setIsSubmitting(false);
     setCurrentStep(5); // Mostrar página de éxito
+    
+    // Scroll hacia arriba para mostrar la página de éxito
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const contactInfo = [
@@ -165,9 +280,16 @@ export default function ContactPage() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
+            className={`w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors duration-300 ${
+              errors.name 
+                ? 'bg-red-900/30 border-2 border-red-500 focus:ring-2 focus:ring-red-500' 
+                : 'bg-slate-700/30 focus:ring-2 focus:ring-blue-500'
+            }`}
             placeholder="Tu nombre completo"
           />
+          {errors.name && (
+            <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+          )}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -179,38 +301,61 @@ export default function ContactPage() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
+            className={`w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors duration-300 ${
+              errors.email 
+                ? 'bg-red-900/30 border-2 border-red-500 focus:ring-2 focus:ring-red-500' 
+                : 'bg-slate-700/30 focus:ring-2 focus:ring-blue-500'
+            }`}
             placeholder="tu@email.com"
           />
+          {errors.email && (
+            <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+          )}
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Teléfono
+            Teléfono *
           </label>
           <input
             type="tel"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
+            required
+            className={`w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors duration-300 ${
+              errors.phone 
+                ? 'bg-red-900/30 border-2 border-red-500 focus:ring-2 focus:ring-red-500' 
+                : 'bg-slate-700/30 focus:ring-2 focus:ring-blue-500'
+            }`}
             placeholder="+52 55 1234 5678"
           />
+          {errors.phone && (
+            <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+          )}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Empresa / Negocio
+            Empresa / Negocio *
           </label>
           <input
             type="text"
             name="company"
             value={formData.company}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
+            required
+            className={`w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors duration-300 ${
+              errors.company 
+                ? 'bg-red-900/30 border-2 border-red-500 focus:ring-2 focus:ring-red-500' 
+                : 'bg-slate-700/30 focus:ring-2 focus:ring-blue-500'
+            }`}
             placeholder="Nombre de tu empresa"
           />
+          {errors.company && (
+            <p className="text-red-400 text-sm mt-1">{errors.company}</p>
+          )}
         </div>
       </div>
     </div>
@@ -261,7 +406,7 @@ export default function ContactPage() {
 
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-4">
-          ¿Qué tipo de negocio tienes?
+          ¿Qué tipo de negocio tienes? *
         </label>
         <div className="grid md:grid-cols-4 gap-3">
           {businessTypes.map((business) => {
@@ -304,6 +449,7 @@ export default function ContactPage() {
             name="otherBusinessType"
             value={formData.otherBusinessType}
             onChange={handleChange}
+            required={formData.businessType === 'other'}
             className="w-full px-4 py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
             placeholder="Ej: Consultoría, Inmobiliaria, Fitness, etc."
           />
@@ -325,7 +471,7 @@ export default function ContactPage() {
 
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-4">
-          ¿Cuál es tu enfoque para este proyecto?
+          ¿Cuál es tu enfoque para este proyecto? *
         </label>
         <p className="text-gray-400 text-sm mb-4">
           Nos ayuda a entender qué valoras más en tu proyecto digital
@@ -359,7 +505,7 @@ export default function ContactPage() {
 
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-4">
-          ¿Cuándo necesitas que esté listo?
+          ¿Cuándo necesitas que esté listo? *
         </label>
         <div className="grid md:grid-cols-2 gap-3">
           {timelines.map((timeline) => (
@@ -400,9 +546,16 @@ export default function ContactPage() {
           name="currentWebsite"
           value={formData.currentWebsite}
           onChange={handleChange}
-          className="w-full px-4 py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
+          className={`w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors duration-300 ${
+            errors.currentWebsite 
+              ? 'bg-red-900/30 border-2 border-red-500 focus:ring-2 focus:ring-red-500' 
+              : 'bg-slate-700/30 focus:ring-2 focus:ring-blue-500'
+          }`}
           placeholder="https://tusitio.com o https://ejemplo-que-me-gusta.com"
         />
+        {errors.currentWebsite && (
+          <p className="text-red-400 text-sm mt-1">{errors.currentWebsite}</p>
+        )}
       </div>
     </div>
   );
@@ -420,7 +573,7 @@ export default function ContactPage() {
 
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-4">
-          ¿Qué quieres lograr con tu sitio web?
+          ¿Qué quieres lograr con tu sitio web? *
         </label>
         <div className="grid md:grid-cols-2 gap-4">
           {mainGoals.map((goal) => {
@@ -454,16 +607,24 @@ export default function ContactPage() {
 
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">
-          ¿Quién es tu público objetivo?
+          ¿Quién es tu público objetivo? *
         </label>
         <input
           type="text"
           name="targetAudience"
           value={formData.targetAudience}
           onChange={handleChange}
-          className="w-full px-4 py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
+          required
+          className={`w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors duration-300 ${
+            errors.targetAudience 
+              ? 'bg-red-900/30 border-2 border-red-500 focus:ring-2 focus:ring-red-500' 
+              : 'bg-slate-700/30 focus:ring-2 focus:ring-blue-500'
+          }`}
           placeholder="Ej: Jóvenes de 25-35 años interesados en fitness"
         />
+        {errors.targetAudience && (
+          <p className="text-red-400 text-sm mt-1">{errors.targetAudience}</p>
+        )}
       </div>
 
       <div>
@@ -496,16 +657,24 @@ export default function ContactPage() {
 
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">
-          Cuéntanos más sobre tu proyecto
+          Cuéntanos más sobre tu proyecto *
         </label>
         <textarea
           name="message"
           value={formData.message}
           onChange={handleChange}
+          required
           rows={4}
-          className="w-full px-4 py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 resize-none"
+          className={`w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors duration-300 resize-none ${
+            errors.message 
+              ? 'bg-red-900/30 border-2 border-red-500 focus:ring-2 focus:ring-red-500' 
+              : 'bg-slate-700/30 focus:ring-2 focus:ring-blue-500'
+          }`}
           placeholder="Cualquier información adicional que creas importante..."
         />
+        {errors.message && (
+          <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+        )}
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -587,6 +756,15 @@ export default function ContactPage() {
           </li>
         </ul>
       </div>
+
+      {/* Botón para regresar al inicio */}
+      <Link 
+        href="/" 
+        className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+      >
+        <Home className="w-5 h-5" />
+        <span>Volver al Inicio</span>
+      </Link>
     </div>
   );
 
