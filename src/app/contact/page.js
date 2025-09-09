@@ -199,6 +199,17 @@ export default function ContactPage() {
     
     if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
+      
+      // Scroll hacia arriba del formulario en móviles
+      setTimeout(() => {
+        const formElement = document.querySelector('form');
+        if (formElement) {
+          formElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      }, 100);
     }
   };
 
@@ -206,6 +217,17 @@ export default function ContactPage() {
     e.preventDefault();
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+      
+      // Scroll hacia arriba del formulario en móviles
+      setTimeout(() => {
+        const formElement = document.querySelector('form');
+        if (formElement) {
+          formElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      }, 100);
     }
   };
 
