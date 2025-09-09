@@ -25,15 +25,39 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simular envío del formulario
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Crear mensaje para WhatsApp
+    const whatsappMessage = `¡Hola! Me interesa conocer más sobre sus servicios.
+
+📋 *Información de contacto:*
+• *Nombre:* ${formData.name}
+• *Email:* ${formData.email}
+${formData.phone ? `• *Teléfono:* ${formData.phone}` : ''}
+
+💬 *Mensaje:*
+${formData.message}
+
+¡Espero su respuesta!`;
+
+    // Codificar el mensaje para URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
     
-    // Aquí iría la lógica real de envío
-    console.log('Formulario enviado:', formData);
+    // Número de WhatsApp de la empresa
+    const whatsappNumber = '525564198670';
+    
+    // Crear URL de WhatsApp
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Simular un pequeño delay para la animación
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Abrir WhatsApp
+    window.open(whatsappUrl, '_blank');
     
     setIsSubmitting(false);
     setFormData({ name: '', email: '', phone: '', message: '' });
-    alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+    
+    // Mostrar mensaje de confirmación
+    alert('¡Perfecto! Se abrirá WhatsApp para que puedas enviar tu mensaje.');
   };
 
   const contactInfo = [
@@ -96,9 +120,12 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Form */}
           <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8">
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
-              Envíanos un mensaje
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
+              Envíanos un mensaje por WhatsApp
             </h3>
+            <p className="text-sm text-gray-400 mb-4 sm:mb-6">
+              Completa el formulario y se abrirá WhatsApp con tu mensaje listo para enviar
+            </p>
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
@@ -166,8 +193,8 @@ export default function Contact() {
                 disabled={isSubmitting}
                 className="w-full flex items-center justify-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span>{isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}</span>
+                <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span>{isSubmitting ? 'Preparando...' : 'Enviar por WhatsApp'}</span>
               </button>
             </form>
           </div>
