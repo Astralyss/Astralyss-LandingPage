@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ExternalLink, Github, Eye, Star, TrendingUp, Users, Zap, ArrowRight, Target, Rocket, BarChart3, ShoppingCart, Globe, Smartphone } from 'lucide-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export default function Portfolio() {
   const [activeCase, setActiveCase] = useState(0);
   const [activeFilter, setActiveFilter] = useState('web');
+  const isMobile = useIsMobile();
 
   const transformationCases = [
     {
@@ -186,11 +188,14 @@ export default function Portfolio() {
   }, []);
 
   useEffect(() => {
+    // Solo activar animación automática en desktop
+    if (isMobile) return;
+    
     const interval = setInterval(() => {
       setActiveCase((prev) => (prev + 1) % filteredCases.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, [filteredCases.length]);
+  }, [filteredCases.length, isMobile]);
 
   return (
     <section id="portafolio" className="py-16 sm:py-20 relative overflow-hidden">

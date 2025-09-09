@@ -3,9 +3,11 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Zap, Shield, TrendingUp, Database, Globe, Smartphone } from 'lucide-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export default function Technologies() {
   const [activeCategory, setActiveCategory] = useState(0);
+  const isMobile = useIsMobile();
 
   const categories = [
     {
@@ -57,11 +59,14 @@ export default function Technologies() {
   ];
 
   useEffect(() => {
+    // Solo activar animación automática en desktop
+    if (isMobile) return;
+    
     const interval = setInterval(() => {
       setActiveCategory((prev) => (prev + 1) % categories.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, [categories.length]);
+  }, [categories.length, isMobile]);
 
   return (
     <section id="tecnologias" className="py-16 sm:py-20 relative overflow-hidden">

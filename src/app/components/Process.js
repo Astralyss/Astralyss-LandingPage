@@ -2,11 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Search, Palette, Code, Rocket, CheckCircle, ArrowRight } from 'lucide-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export default function Process() {
   const [activeStep, setActiveStep] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const intervalRef = useRef(null);
+  const isMobile = useIsMobile();
 
   const processSteps = [
     {
@@ -80,6 +82,9 @@ export default function Process() {
   };
 
   useEffect(() => {
+    // Solo activar animación automática en desktop
+    if (isMobile) return;
+    
     if (!isHovering) {
       startInterval();
     } else {
@@ -91,7 +96,7 @@ export default function Process() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isHovering, processSteps.length]);
+  }, [isHovering, processSteps.length, isMobile]);
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -121,7 +126,7 @@ export default function Process() {
         </div>
 
         {/* Process Steps */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 ${isMobile ? 'px-4' : ''}`}>
           {processSteps.map((step, index) => {
             const IconComponent = step.icon;
             return (
@@ -139,7 +144,11 @@ export default function Process() {
                 onTouchEnd={handleMouseLeave}
               >
                 {/* Step Number */}
-                <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                <div className={`absolute w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-sm ${
+                  isMobile 
+                    ? 'top-2 left-2' 
+                    : '-top-3 -left-3'
+                }`}>
                   {step.id}
                 </div>
 

@@ -3,11 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Palette, Shield, Zap, CheckCircle, Smartphone, Zap as Lightning } from 'lucide-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export default function Services() {
   const [activeService, setActiveService] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const intervalRef = useRef(null);
+  const isMobile = useIsMobile();
 
   const services = [
     {
@@ -71,6 +73,9 @@ export default function Services() {
   };
 
   useEffect(() => {
+    // Solo activar animación automática en desktop
+    if (isMobile) return;
+    
     if (!isHovering) {
       startInterval();
     } else {
@@ -82,7 +87,7 @@ export default function Services() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isHovering, services.length]);
+  }, [isHovering, services.length, isMobile]);
 
   const handleMouseEnter = () => {
     setIsHovering(true);

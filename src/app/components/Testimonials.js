@@ -3,9 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Quote, Star, Users, Award, CheckCircle, ArrowRight } from 'lucide-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export default function Testimonials() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const isMobile = useIsMobile();
 
   const testimonials = [
     {
@@ -29,11 +31,14 @@ export default function Testimonials() {
   ];
 
   useEffect(() => {
+    // Solo activar animación automática en desktop
+    if (isMobile) return;
+    
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, [testimonials.length]);
+  }, [testimonials.length, isMobile]);
 
   const renderStars = (rating) => {
     return [...Array(rating)].map((_, i) => (
