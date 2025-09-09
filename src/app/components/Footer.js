@@ -201,10 +201,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Back to Top Button */}
+      {/* Back to Top Button - Solo visible en desktop */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 w-10 h-10 sm:w-12 sm:h-12 bg-slate-800/30 backdrop-blur-sm rounded-full flex items-center justify-center hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300 z-50"
+        className="hidden md:flex fixed bottom-4 sm:bottom-8 right-4 sm:right-8 w-10 h-10 sm:w-12 sm:h-12 bg-slate-800/30 backdrop-blur-sm rounded-full items-center justify-center hover:shadow-lg hover:shadow-slate-600/20 transition-all duration-300 z-50"
         aria-label="Volver arriba"
       >
         <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 hover:text-white transition-colors duration-300" />

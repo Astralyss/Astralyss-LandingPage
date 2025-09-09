@@ -1,6 +1,7 @@
 import { Roboto, Open_Sans } from "next/font/google";
 import "./globals.css";
 import JsonLd from "./components/JsonLd";
+import FloatingButtons from "./components/FloatingButtons";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -92,6 +93,7 @@ export default function RootLayout({ children }) {
         className={`${roboto.variable} ${openSans.variable} antialiased bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white text-sm`}
       >
         {children}
+        <FloatingButtons />
       </body>
     </html>
   );
