@@ -4,8 +4,7 @@ import { SignJWT, jwtVerify } from 'jose';
 // Verificar que JWT_SECRET esté configurado
 if (!process.env.JWT_SECRET) {
   throw new Error('❌ ERROR DE SEGURIDAD: JWT_SECRET debe estar configurado en .env.local');
-}
-
+} 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
 // Credenciales del administrador - SOLO desde variables de entorno
