@@ -111,8 +111,20 @@ export default function ContactPage() {
 
   const validateURL = (url) => {
     if (!url) return true; // URL es opcional
+    
+    // Si la URL ya tiene protocolo, validar normalmente
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      try {
+        new URL(url);
+        return true;
+      } catch {
+        return false;
+      }
+    }
+    
+    // Si no tiene protocolo, agregar https:// y validar
     try {
-      new URL(url);
+      new URL(`https://${url}`);
       return true;
     } catch {
       return false;
@@ -165,7 +177,7 @@ export default function ContactPage() {
         
         // Validar URL del sitio web actual si se proporciona
         if (formData.currentWebsite && !validateURL(formData.currentWebsite)) {
-          newErrors.currentWebsite = 'Por favor ingresa una URL válida (ej: https://tusitio.com)';
+          newErrors.currentWebsite = 'Por favor ingresa una URL válida (ej: www.tusitio.com o https://tusitio.com)';
         }
         break;
         
@@ -240,17 +252,38 @@ export default function ContactPage() {
     
     setIsSubmitting(true);
     
-    // Simular envío del formulario
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Aquí iría la lógica real de envío
-    console.log('Formulario completo enviado:', formData);
-    
-    setIsSubmitting(false);
-    setCurrentStep(5); // Mostrar página de éxito
-    
-    // Scroll hacia arriba para mostrar la página de éxito
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      // Enviar datos a la API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Error al enviar el formulario');
+      }
+
+      console.log('Formulario enviado exitosamente:', result);
+      
+      setIsSubmitting(false);
+      setCurrentStep(5); // Mostrar página de éxito
+      
+      // Scroll hacia arriba para mostrar la página de éxito
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      
+      // Mostrar error al usuario
+      alert(`Error al enviar el formulario: ${error.message}`);
+      
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -573,7 +606,7 @@ export default function ContactPage() {
               ? 'bg-red-900/30 border-2 border-red-500 focus:ring-2 focus:ring-red-500' 
               : 'bg-slate-700/30 focus:ring-2 focus:ring-blue-500'
           }`}
-          placeholder="https://tusitio.com o https://ejemplo-que-me-gusta.com"
+          placeholder="www.tusitio.com o https://ejemplo-que-me-gusta.com"
         />
         {errors.currentWebsite && (
           <p className="text-red-400 text-sm mt-1">{errors.currentWebsite}</p>

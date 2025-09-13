@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Modelo principal para almacenar las consultas de contacto
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Información básica del cliente
+  name  String @db.VarChar(255)
+  email String @db.VarChar(255)
+  phone String @db.VarChar(50)
+  company String @db.VarChar(255)
+
+  // Información del proyecto
+  projectType String @db.VarChar(50) // website, ecommerce, portfolio, landing, app, redesign
+  businessType String @db.VarChar(50) // retail, services, restaurant, health, education, tech, creative, other
+  otherBusinessType String? @db.VarChar(255) // Solo si businessType es "other"
+  budget String @db.VarChar(50) // quality, custom, professional, discuss
+  timeline String @db.VarChar(50) // asap, 1-month, 2-3-months, 3-plus-months, flexible
+  currentWebsite String? @db.VarChar(500) // URL opcional
+
+  // Objetivos y necesidades
+  mainGoal String @db.VarChar(50) // more-clients, increase-sales, brand-awareness, online-presence, automation, credibility
+  targetAudience String @db.Text
+  competitors String? @db.Text
+  specialRequirements String? @db.Text
+  message String @db.Text
+
+  // Información adicional
+  howDidYouHear String? @db.VarChar(50) // google, facebook, instagram, referral, other
+  preferredContact String @default("email") @db.VarChar(20) // email, phone, whatsapp
+
+  // Estado del lead
+  status String @default("new") @db.VarChar(20) // new, contacted, qualified, proposal_sent, closed_won, closed_lost
+  isRead Boolean @default(false) // Si la consulta ha sido leída por el administrador
+  notes String? @db.Text // Notas internas del equipo
+
+  // Relaciones
+  followUps ContactFollowUp[]
+
+  @@map("contact_submissions")
+}
+
+// Modelo para almacenar el historial de seguimiento
+model ContactFollowUp {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  contactSubmissionId String
+  contactSubmission ContactSubmission @relation(fields: [contactSubmissionId], references: [id], onDelete: Cascade)
+  
+  type String @db.VarChar(50) // email, call, whatsapp, meeting
+  description String @db.Text
+  nextAction String? @db.Text
+  nextActionDate DateTime?
+  
+  @@map("contact_follow_ups")
+}
