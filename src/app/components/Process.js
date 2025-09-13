@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Search, Palette, Code, Rocket, CheckCircle, ArrowRight } from 'lucide-react';
 import { useIsMobile } from '../hooks/useIsMobile';
 
@@ -65,14 +65,14 @@ export default function Process() {
     }
   ];
 
-  const startInterval = () => {
+  const startInterval = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
     intervalRef.current = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % processSteps.length);
     }, 5000);
-  };
+  }, [processSteps.length]);
 
   const stopInterval = () => {
     if (intervalRef.current) {
@@ -96,7 +96,7 @@ export default function Process() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isHovering, processSteps.length, isMobile]);
+  }, [isHovering, isMobile, startInterval]);
 
   const handleMouseEnter = () => {
     setIsHovering(true);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { formatContactData, CONTACT_STATUSES, FOLLOW_UP_TYPES, PROJECT_TYPES, BUSINESS_TYPES } from '@/lib/contactUtils';
 import { Search, Filter, Calendar, User, Building, Phone, Mail, ExternalLink, Check, X, Trash2, Eye, EyeOff } from 'lucide-react';
 
@@ -37,7 +37,7 @@ export default function AdminContactos() {
 
   useEffect(() => {
     filterSubmissions();
-  }, [submissions, searchTerm, statusFilter, projectTypeFilter, businessTypeFilter, dateFilter, sortBy, readFilter]);
+  }, [filterSubmissions]);
 
   const fetchSubmissions = async () => {
     try {
@@ -51,7 +51,7 @@ export default function AdminContactos() {
     }
   };
 
-  const filterSubmissions = () => {
+  const filterSubmissions = useCallback(() => {
     let filtered = [...submissions];
 
     // Búsqueda por texto
@@ -129,7 +129,7 @@ export default function AdminContactos() {
     });
 
     setFilteredSubmissions(filtered);
-  };
+  }, [submissions, searchTerm, statusFilter, projectTypeFilter, businessTypeFilter, dateFilter, sortBy, readFilter]);
 
   const updateSubmissionStatus = async (id, status, notes) => {
     try {

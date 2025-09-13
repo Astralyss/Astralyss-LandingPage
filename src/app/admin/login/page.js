@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Eye, EyeOff, Lock, User, AlertCircle } from 'lucide-react';
 
 export default function AdminLogin() {
@@ -175,12 +176,12 @@ export default function AdminLogin() {
 
         {/* Footer */}
         <div className="text-center mt-8">
-          <a 
+          <Link 
             href="/" 
             className="text-gray-400 hover:text-white transition-colors text-sm"
           >
             ← Volver al sitio principal
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { Palette, Shield, Zap, CheckCircle, Smartphone, Zap as Lightning } from 'lucide-react';
 import { useIsMobile } from '../hooks/useIsMobile';
@@ -56,14 +56,14 @@ export default function Services() {
     }
   ];
 
-  const startInterval = () => {
+  const startInterval = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
     intervalRef.current = setInterval(() => {
       setActiveService((prev) => (prev + 1) % services.length);
     }, 8000);
-  };
+  }, [services.length]);
 
   const stopInterval = () => {
     if (intervalRef.current) {
@@ -87,7 +87,7 @@ export default function Services() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isHovering, services.length, isMobile]);
+  }, [isHovering, isMobile, startInterval]);
 
   const handleMouseEnter = () => {
     setIsHovering(true);
