@@ -1,13 +1,23 @@
 import bcrypt from 'bcryptjs';
 import { SignJWT, jwtVerify } from 'jose';
 
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'tu-clave-secreta-super-segura-para-astralyss-2024');
+// Verificar que JWT_SECRET esté configurado
+if (!process.env.JWT_SECRET) {
+  throw new Error('❌ ERROR DE SEGURIDAD: JWT_SECRET debe estar configurado en .env.local');
+}
 
-// Credenciales del administrador (en producción deberían estar en la base de datos)
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
+
+// Credenciales del administrador - SOLO desde variables de entorno
 const ADMIN_CREDENTIALS = {
-  username: process.env.ADMIN_USERNAME || 'JameX-Admin',
-  password: process.env.ADMIN_PASSWORD || 'Startup-2025Admin', // Contraseña por defecto
+  username: process.env.ADMIN_USERNAME,
+  password: process.env.ADMIN_PASSWORD,
 };
+
+// Verificar que las variables de entorno estén configuradas
+if (!ADMIN_CREDENTIALS.username || !ADMIN_CREDENTIALS.password) {
+  throw new Error('❌ ERROR DE SEGURIDAD: Las variables ADMIN_USERNAME y ADMIN_PASSWORD deben estar configuradas en .env.local');
+}
 
 // Hash de la contraseña (se ejecuta una vez al iniciar)
 const ADMIN_PASSWORD_HASH = bcrypt.hashSync(ADMIN_CREDENTIALS.password, 12);

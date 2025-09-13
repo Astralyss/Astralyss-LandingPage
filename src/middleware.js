@@ -1,8 +1,12 @@
 import { NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 
-// Clave secreta para JWT (en producción debería estar en variables de entorno)
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'tu-clave-secreta-super-segura-para-astralyss-2024');
+// Verificar que JWT_SECRET esté configurado
+if (!process.env.JWT_SECRET) {
+  throw new Error('❌ ERROR DE SEGURIDAD: JWT_SECRET debe estar configurado en .env.local');
+}
+
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;

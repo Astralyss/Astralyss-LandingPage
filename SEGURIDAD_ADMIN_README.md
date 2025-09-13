@@ -44,11 +44,33 @@ ADMIN_PASSWORD="Astralyss2024!"
 NODE_ENV="production"  # Para cookies seguras
 ```
 
-### Credenciales por Defecto
-- **Usuario**: `JameX-Admin`
-- **Contraseña**: `Startup-2025Admin`
+### 🔐 **CREDENCIALES OBLIGATORIAS**
+**NO HAY CREDENCIALES POR DEFECTO** - Debes configurar las variables de entorno:
 
-⚠️ **IMPORTANTE**: Cambia estas credenciales en producción.
+```env
+ADMIN_USERNAME="JameX-Admin"
+ADMIN_PASSWORD="Startup-2025Admin"
+JWT_SECRET="GENERA_UNA_CLAVE_SECRETA_MUY_LARGA_Y_SEGURA_AQUI"
+```
+
+⚠️ **CRÍTICO**: Sin estas variables, la aplicación NO funcionará.
+
+### 🔑 **Cómo Generar JWT_SECRET Seguro**
+```bash
+# Opción 1: Usando Node.js
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+
+# Opción 2: Usando OpenSSL
+openssl rand -hex 64
+
+# Opción 3: Generador online seguro
+# https://generate-secret.vercel.app/64
+```
+
+**Ejemplo de JWT_SECRET seguro:**
+```
+a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+```
 
 ## 📁 Archivos Creados/Modificados
 
@@ -67,9 +89,11 @@ NODE_ENV="production"  # Para cookies seguras
 
 ## 🛡️ Medidas de Seguridad
 
-### 1. **Hash de Contraseñas**
-- Uso de bcrypt con salt rounds de 12
-- Las contraseñas nunca se almacenan en texto plano
+### 1. **🔐 Credenciales Seguras**
+- **NO hay credenciales hardcodeadas** en el código
+- **Solo variables de entorno** - si no están configuradas, la app falla
+- **Archivo .env.local** está en .gitignore - nunca se sube a GitHub
+- **Hash de contraseñas** con bcrypt (salt rounds de 12)
 
 ### 2. **Tokens JWT Seguros**
 - Firmados con clave secreta
@@ -86,6 +110,11 @@ NODE_ENV="production"  # Para cookies seguras
 - Verificación automática en todas las rutas admin
 - Redirección segura al login
 - Limpieza de cookies inválidas
+
+### 5. **🚨 Protección de Código**
+- **Código limpio**: Sin credenciales expuestas
+- **Git seguro**: Solo se suben archivos de ejemplo
+- **Falla segura**: Si no hay variables de entorno, la app no inicia
 
 ## 🚦 Flujo de Autenticación
 
@@ -110,8 +139,11 @@ NODE_ENV="production"  # Para cookies seguras
 
 ### 1. **Configurar Variables de Entorno**
 ```bash
-cp env.example .env.local
-# Editar .env.local con tus valores
+# Copia el archivo de ejemplo
+cp env.local.example .env.local
+
+# Edita .env.local con tus valores reales
+# NUNCA subas .env.local a GitHub
 ```
 
 ### 2. **Cambiar Credenciales por Defecto**
