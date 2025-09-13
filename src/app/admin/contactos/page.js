@@ -35,10 +35,6 @@ export default function AdminContactos() {
     fetchSubmissions();
   }, []);
 
-  useEffect(() => {
-    filterSubmissions();
-  }, [filterSubmissions]);
-
   const fetchSubmissions = async () => {
     try {
       const response = await fetch('/api/contact');
@@ -130,6 +126,10 @@ export default function AdminContactos() {
 
     setFilteredSubmissions(filtered);
   }, [submissions, searchTerm, statusFilter, projectTypeFilter, businessTypeFilter, dateFilter, sortBy, readFilter]);
+
+  useEffect(() => {
+    filterSubmissions();
+  }, [filterSubmissions]);
 
   const updateSubmissionStatus = async (id, status, notes) => {
     try {
