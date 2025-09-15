@@ -9,6 +9,7 @@ const FloatingButtons = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -24,12 +25,19 @@ const FloatingButtons = () => {
       // Solo mostrar en móviles y después de hacer scroll 300px
       if (window.innerWidth <= 768 && window.scrollY > 300) {
         setIsVisible(true);
+        setIsAnimatingOut(false);
         // Pequeño delay para animación suave
         setTimeout(() => setShowButtons(true), 100);
       } else {
-        setShowButtons(false);
-        // Delay para ocultar después de la animación
-        setTimeout(() => setIsVisible(false), 300);
+        if (showButtons) {
+          setIsAnimatingOut(true);
+          setShowButtons(false);
+          // Delay para ocultar después de la animación
+          setTimeout(() => {
+            setIsVisible(false);
+            setIsAnimatingOut(false);
+          }, 500);
+        }
       }
     };
 
@@ -68,15 +76,26 @@ const FloatingButtons = () => {
             onClick={scrollToTop}
             className={`
               w-14 h-14 bg-gradient-to-r from-blue-600 to-cyan-500 
-              rounded-full shadow-lg hover:shadow-xl 
+              rounded-full shadow-lg hover:shadow-xl hover:shadow-blue-500/30
               flex items-center justify-center
-              transition-all duration-300 ease-in-out
+              transition-all duration-500 ease-out
               hover:scale-110 active:scale-95
-              ${showButtons ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+              ${showButtons 
+                ? 'opacity-100 translate-y-0 scale-100' 
+                : 'opacity-0 translate-y-8 scale-75'
+              }
             `}
+            style={{
+              transitionDelay: showButtons ? '0ms' : '0ms',
+              animation: showButtons 
+                ? 'bounceInUp 0.6s ease-out' 
+                : isAnimatingOut 
+                  ? 'fadeOutDown 0.5s ease-in forwards' 
+                  : 'none'
+            }}
             aria-label="Ir arriba"
           >
-            <ChevronUp className="w-6 h-6 text-white" />
+            <ChevronUp className="w-6 h-6 text-white transition-transform duration-300 group-hover:scale-110" />
           </button>
 
           {/* Botón de contacto */}
@@ -84,16 +103,27 @@ const FloatingButtons = () => {
             href="/contact"
             className={`
               w-14 h-14 bg-gradient-to-r from-blue-600 to-cyan-500 
-              rounded-full shadow-lg hover:shadow-xl 
+              rounded-full shadow-lg hover:shadow-xl hover:shadow-blue-500/30
               flex items-center justify-center
-              transition-all duration-300 ease-in-out
+              transition-all duration-500 ease-out
               hover:scale-110 active:scale-95
-              ${showButtons ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+              ${showButtons 
+                ? 'opacity-100 translate-y-0 scale-100' 
+                : 'opacity-0 translate-y-8 scale-75'
+              }
             `}
+            style={{
+              transitionDelay: showButtons ? '100ms' : '0ms',
+              animation: showButtons 
+                ? 'bounceInUp 0.6s ease-out 0.1s both' 
+                : isAnimatingOut 
+                  ? 'fadeOutDown 0.5s ease-in 0.1s forwards' 
+                  : 'none'
+            }}
             aria-label="Contactar"
           >
             <svg 
-              className="w-6 h-6 text-white" 
+              className="w-6 h-6 text-white transition-transform duration-300 group-hover:scale-110" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -114,16 +144,27 @@ const FloatingButtons = () => {
             rel="noopener noreferrer"
             className={`
               w-14 h-14 bg-gradient-to-r from-green-500 to-green-600 
-              rounded-full shadow-lg hover:shadow-xl 
+              rounded-full shadow-lg hover:shadow-xl hover:shadow-green-500/30
               flex items-center justify-center
-              transition-all duration-300 ease-in-out
+              transition-all duration-500 ease-out
               hover:scale-110 active:scale-95
-              ${showButtons ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+              ${showButtons 
+                ? 'opacity-100 translate-y-0 scale-100' 
+                : 'opacity-0 translate-y-8 scale-75'
+              }
             `}
+            style={{
+              transitionDelay: showButtons ? '200ms' : '0ms',
+              animation: showButtons 
+                ? 'bounceInUp 0.6s ease-out 0.2s both' 
+                : isAnimatingOut 
+                  ? 'fadeOutDown 0.5s ease-in 0.2s forwards' 
+                  : 'none'
+            }}
             aria-label="Contactar por WhatsApp"
           >
             <svg 
-              className="w-6 h-6 text-white" 
+              className="w-6 h-6 text-white transition-transform duration-300 group-hover:scale-110" 
               fill="currentColor" 
               viewBox="0 0 24 24"
             >
@@ -132,6 +173,34 @@ const FloatingButtons = () => {
           </a>
         </div>
       )}
+      
+      <style jsx>{`
+        @keyframes bounceInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(30px) scale(0.8);
+          }
+          50% {
+            opacity: 0.8;
+            transform: translateY(-5px) scale(1.05);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        @keyframes fadeOutDown {
+          0% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+          }
+        }
+      `}</style>
     </>
   );
 };
