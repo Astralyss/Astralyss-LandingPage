@@ -6,7 +6,6 @@ import { Phone, Mail, Globe, Send, CheckCircle, Facebook, Instagram, ArrowRight,
 import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
 import Link from 'next/link';
 
 export default function ContactPage() {
@@ -846,7 +845,7 @@ export default function ContactPage() {
       </Head>
       
       <main className="min-h-screen">
-        <Breadcrumbs />
+        <Navbar />
         <style jsx>{`
         select option {
           background-color: #1e293b !important;
@@ -860,9 +859,8 @@ export default function ContactPage() {
           background-color: #3b82f6 !important;
         }
       `}</style>
-      <Navbar />
       
-      <section className="py-16 sm:py-20 relative overflow-hidden">
+      <section className="pt-20 pb-16 sm:pt-24 sm:pb-20 relative overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-800 via-slate-900 to-slate-800">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.08),transparent_50%)]"></div>

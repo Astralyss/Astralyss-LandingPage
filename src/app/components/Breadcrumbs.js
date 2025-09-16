@@ -54,7 +54,7 @@ export default function Breadcrumbs() {
   }
 
   return (
-    <nav className="bg-slate-800/30 backdrop-blur-sm border-b border-slate-700/50" aria-label="Breadcrumb">
+    <nav className="bg-slate-800/30 backdrop-blur-sm border-b border-slate-700/50 relative z-10 pt-16 lg:pt-20" aria-label="Breadcrumb">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-2 py-3">
           <Link
