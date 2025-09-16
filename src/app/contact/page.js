@@ -698,7 +698,7 @@ export default function ContactPage() {
 
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">
-          ¿Hay algo específico que necesites? (opcional)
+          ¿Qué funcionalidades has visto en otros sitios que te gustan? (especialmente de tu industria)
         </label>
         <textarea
           name="specialRequirements"
@@ -706,7 +706,7 @@ export default function ContactPage() {
           onChange={handleChange}
           rows={4}
           className="w-full px-4 py-3 bg-slate-700/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 resize-none"
-          placeholder="Ej: Integración con sistema de inventario, chat en vivo, etc."
+          placeholder="Ej: Diseño específico como Apple, carrito como Amazon, sistema de pagos como Stripe, etc."
         />
       </div>
 
