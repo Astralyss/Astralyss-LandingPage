@@ -22,14 +22,20 @@ const FloatingButtons = () => {
     checkMobile();
 
     const toggleVisibility = () => {
+      const isMobileWidth = window.innerWidth <= 768;
+      const scrollPosition = window.scrollY;
+      
       // Solo mostrar en móviles y después de hacer scroll 300px
-      if (window.innerWidth <= 768 && window.scrollY > 300) {
-        setIsVisible(true);
-        setIsAnimatingOut(false);
-        // Pequeño delay para animación suave
-        setTimeout(() => setShowButtons(true), 100);
+      if (isMobileWidth && scrollPosition > 300) {
+        if (!isVisible) {
+          setIsVisible(true);
+          setIsAnimatingOut(false);
+          // Pequeño delay para animación suave
+          setTimeout(() => setShowButtons(true), 100);
+        }
       } else {
-        if (showButtons) {
+        // Ocultar cuando esté en la parte superior o no sea móvil
+        if (isVisible && showButtons) {
           setIsAnimatingOut(true);
           setShowButtons(false);
           // Delay para ocultar después de la animación
@@ -48,7 +54,7 @@ const FloatingButtons = () => {
       window.removeEventListener('scroll', toggleVisibility);
       window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [isVisible, showButtons]);
 
   const scrollToTop = () => {
     window.scrollTo({
