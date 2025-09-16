@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import Head from 'next/head';
 import { Phone, Mail, Globe, Send, CheckCircle, Facebook, Instagram, ArrowRight, Target, DollarSign, Calendar, Users, Zap, TrendingUp, ShoppingCart, Briefcase, Camera, Palette, Code, BarChart3, Store, Utensils, Heart, BookOpen, Paintbrush, Home } from 'lucide-react';
 import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Breadcrumbs from '../components/Breadcrumbs';
 import Link from 'next/link';
 
 export default function ContactPage() {
@@ -824,8 +826,28 @@ export default function ContactPage() {
   );
 
   return (
-    <main className="min-h-screen">
-      <style jsx>{`
+    <>
+      <Head>
+        <title>Contacto - Astralyss | Solicita tu Propuesta Personalizada</title>
+        <meta name="description" content="¿Tienes un proyecto en mente? Contáctanos y recibe una propuesta personalizada en 24 horas. Desarrollo web, diseño, e-commerce y más." />
+        <meta name="keywords" content="contacto, propuesta, desarrollo web, diseño web, e-commerce, consultoría digital, Astralyss" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://www.astralyss.com/contact" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Contacto - Astralyss | Solicita tu Propuesta Personalizada" />
+        <meta property="og:description" content="¿Tienes un proyecto en mente? Contáctanos y recibe una propuesta personalizada en 24 horas." />
+        <meta property="og:url" content="https://www.astralyss.com/contact" />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter */}
+        <meta name="twitter:title" content="Contacto - Astralyss | Solicita tu Propuesta Personalizada" />
+        <meta name="twitter:description" content="¿Tienes un proyecto en mente? Contáctanos y recibe una propuesta personalizada en 24 horas." />
+      </Head>
+      
+      <main className="min-h-screen">
+        <Breadcrumbs />
+        <style jsx>{`
         select option {
           background-color: #1e293b !important;
           color: white !important;
@@ -978,6 +1000,7 @@ export default function ContactPage() {
       </section>
 
       <Footer />
-    </main>
+      </main>
+    </>
   );
 }

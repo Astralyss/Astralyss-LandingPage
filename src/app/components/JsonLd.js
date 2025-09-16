@@ -4,7 +4,13 @@ export default function JsonLd() {
     "@type": "Organization",
     "name": "Astralyss",
     "url": "https://www.astralyss.com",
-    "logo": "https://www.astralyss.com/logo/IconAstralyss-withe.svg",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.astralyss.com/logo/IconAstralyss-withe.svg",
+      "width": 200,
+      "height": 200,
+      "caption": "Logo Astralyss"
+    },
     "description": "Impulsamos el crecimiento de tu marca con innovación, calidad y tecnología de vanguardia. Diseño moderno, desarrollo web optimizado y soluciones digitales de alto impacto.",
     "foundingDate": "2024",
     "address": {
@@ -137,6 +143,27 @@ export default function JsonLd() {
       "100% Satisfacción del Cliente",
       "50+ Proyectos Completados",
       "99.9% Tiempo de Actividad"
+    ],
+    "mainEntityOfPage": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.astralyss.com",
+        "name": "Astralyss - Desarrollo Web y Diseño",
+        "description": "Impulsamos el crecimiento de tu marca con innovación, calidad y tecnología de vanguardia."
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.astralyss.com/contact",
+        "name": "Contacto - Astralyss",
+        "description": "Solicita tu propuesta personalizada para desarrollo web, diseño y soluciones digitales."
+      }
+    ],
+    "potentialAction": [
+      {
+        "@type": "SearchAction",
+        "target": "https://www.astralyss.com/contact",
+        "query-input": "required name=search_term_string"
+      }
     ]
   };
 

@@ -59,6 +59,7 @@ export default function Navbar() {
     },
     { name: 'Nosotros', href: '#nosotros', icon: Users },
     { name: 'Reseñas', href: '#reseñas', icon: Star },
+    { name: 'Contacto', href: '/contact', icon: MessageCircle },
   ];
 
   const handleServiceClick = (category) => {
@@ -114,10 +115,10 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 hover:scale-105 transition-transform duration-300">
+          <Link href="/" className="flex items-center space-x-3 hover:scale-105 transition-transform duration-300" aria-label="Astralyss - Inicio">
             <Image
               src={isDarkMode ? "/logo/IconAstralyss-withe.svg" : "/logo/iconoAstralyss-dark.svg"}
-              alt="Astralyss"
+              alt="Logo Astralyss - Desarrollo Web y Diseño"
               width={40}
               height={40}
               className="w-8 h-8 lg:w-10 lg:h-10 transition-all duration-300"

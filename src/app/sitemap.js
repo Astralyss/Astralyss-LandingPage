@@ -6,7 +6,13 @@ export default function sitemap() {
       url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 1,
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/#soluciones`,

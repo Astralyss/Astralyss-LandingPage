@@ -27,10 +27,11 @@ export default function Footer() {
 
   const footerLinks = {
     navegacion: [
-      { name: 'Inicio', href: '#inicio' },
+      { name: 'Inicio', href: '/' },
       { name: 'Servicios', href: '#servicios' },
       { name: 'Acerca de Nosotros', href: '#nosotros' },
-      { name: 'Contacto', href: '#contacto' }
+      { name: 'Contacto', href: '/contact' },
+      { name: 'Solicitar Propuesta', href: '/contact' }
     ],
     servicios: [
       { name: 'Desarrollo Web', href: '#portafolio', category: 'web' },

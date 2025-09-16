@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/login
 
 Sitemap: https://www.astralyss.com/sitemap.xml 
